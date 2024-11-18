@@ -14,5 +14,5 @@ public class SeguradoService {
 		// Validações adicionais podem ser feitas aqui
 		seguradoDAO.save(segurado);
 	}
-	// Outros métodos, como buscar segurados, etc.
+		// Outros métodos, como buscar segurados, etc.
 }

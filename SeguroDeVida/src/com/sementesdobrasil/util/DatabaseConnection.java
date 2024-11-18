@@ -14,7 +14,6 @@ public class DatabaseConnection {
 			// 2. adicionar no CMD (se for windows) com o comando "set"
 			String usuario = System.getenv("DB_USUARIO");
 			String senha = System.getenv("DB_SENHA");
-
 			// Estabelece a conexão usando as credenciais das variáveis de ambiente
 			return DriverManager.getConnection(url, usuario, senha);
 		} catch (SQLException e) {
