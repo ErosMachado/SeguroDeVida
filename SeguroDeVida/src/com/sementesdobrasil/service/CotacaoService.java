@@ -4,8 +4,8 @@ import com.sementesdobrasil.model.Cotacao;
 import com.sementesdobrasil.model.Segurado;
 import com.sementesdobrasil.model.Seguro;
 import java.time.LocalDate;
+import java.time.Period;
 import com.sementesdobrasil.dao.CotacaoDAO;
-import com.sementesdobrasil.util.ValidationUtil;
 
 public class CotacaoService {
 	private CotacaoDAO cotacaoDAO;
