@@ -6,6 +6,7 @@ import java.awt.event.*;
 
 
 public class CadastroSeguradoView extends JFrame {
+	private static final long serialVersionUID = 1L;//mantenho?
 	private JTextField nomeField;
 	private JTextField dataNascimentoField;
 	private JComboBox<String> generoBox;
