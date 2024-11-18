@@ -15,7 +15,7 @@ public class CotacaoService {
 	}
 
 	public Cotacao calcularCotacao(Segurado segurado, Seguro seguro) throws Exception {
-		// Implementar lógica de cálculo baseada nas regras definidas
+		// Implementar l�gica de cálculo baseada nas regras definidas
 		double valorBase = 100.0; // Valor base fictício
 		// Multiplicadores
 		double multiplicadorIdade = calcularMultiplicadorIdade(segurado.getDataNascimento());
@@ -24,14 +24,12 @@ public class CotacaoService {
 		double multiplicadorSalario = calcularMultiplicadorSalario(seguro.getSalario());
 		double multiplicadorSaude = calcularMultiplicadorSaude(seguro.getCondicaoSaude());
 
-		// Cálculo final
+		// Calculo final
 		double valorFinal = valorBase * multiplicadorIdade * multiplicadorGenero * multiplicadorProfissao
 				* multiplicadorSalario * multiplicadorSaude;
 		seguro.setValorFinal(valorFinal);
-		// Criação da cotação
 		Cotacao cotacao = new Cotacao(segurado, seguro, valorFinal, null, null);
 		// Corretor e Dependentes serão adicionados posteriormente
-		// Salvar cotação
 		cotacaoDAO.save(cotacao);
 		return cotacao;
 	}

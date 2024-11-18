@@ -18,35 +18,36 @@ public class CadastroSeguradoView extends JFrame {
 
 	public CadastroSeguradoView() {
 		setTitle("Cadastro de Segurado");
-		setSize(400, 400);
+		setSize(726, 400);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setLayout(new GridLayout(8, 2));
+		getContentPane().setLayout(new GridLayout(8, 2));
 		// Inicialização dos componentes
 		nomeField = new JTextField();
 		dataNascimentoField = new JTextField();
 		generoBox = new JComboBox<>(new String[] { "Masculino", "Feminino", "Outro" });
+		generoBox.setModel(new DefaultComboBoxModel<String>(new String[] {"Masculino", "Feminino", "Prefiro não informar", "Outro"}));
 		emailField = new JTextField();
 		telefoneField = new JTextField();
 		cpfField = new JTextField();
 		cepField = new JTextField();
 		salvarButton = new JButton("Salvar");
 		// Adicionando componentes à tela
-		add(new JLabel("Nome:"));
-		add(nomeField);
-		add(new JLabel("Data de Nascimento (dd/mm/yyyy):"));
-		add(dataNascimentoField);
-		add(new JLabel("Gênero:"));
-		add(generoBox);
-		add(new JLabel("E-mail:"));
-		add(emailField);
-		add(new JLabel("Telefone:"));
-		add(telefoneField);
-		add(new JLabel("CPF:"));
-		add(cpfField);
-		add(new JLabel("CEP:"));
-		add(cepField);
-		add(new JLabel(""));
-		add(salvarButton);
+		getContentPane().add(new JLabel("Nome:"));
+		getContentPane().add(nomeField);
+		getContentPane().add(new JLabel("Data de Nascimento (dd/mm/yyyy):"));
+		getContentPane().add(dataNascimentoField);
+		getContentPane().add(new JLabel("Gênero:"));
+		getContentPane().add(generoBox);
+		getContentPane().add(new JLabel("E-mail:"));
+		getContentPane().add(emailField);
+		getContentPane().add(new JLabel("Telefone:"));
+		getContentPane().add(telefoneField);
+		getContentPane().add(new JLabel("CPF:"));
+		getContentPane().add(cpfField);
+		getContentPane().add(new JLabel("CEP:"));
+		getContentPane().add(cepField);
+		getContentPane().add(new JLabel(""));
+		getContentPane().add(salvarButton);
 		// Adicionando ActionListener para o botão salvar
 		salvarButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

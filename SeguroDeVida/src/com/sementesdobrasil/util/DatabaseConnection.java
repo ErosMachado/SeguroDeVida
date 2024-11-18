@@ -7,14 +7,20 @@ import java.sql.SQLException;
 public class DatabaseConnection {
 	public Connection conectar() {
 		try {
-			// Obt√©m o URL, o usu√°rio e a senha do BD a partir das vari√°veis de ambiente
+			// pega o URL, o usuario e a senha do BD a partir das variaveis de ambiente
 			String url = "jdbc:oracle:thin:@oracle.fiap.com.br:1521:ORCL";
 			// lembrar de, caso d√™ erro, h√° duas possibilidades:
-			// 1. confugura√ß√£o no eclipse: run as --> Run Configurations --> Environment
+			// 1. configuraÁ„o no eclipse: run as --> Run Configurations --> Environment
 			// 2. adicionar no CMD (se for windows) com o comando "set"
 			String usuario = System.getenv("DB_USUARIO");
 			String senha = System.getenv("DB_SENHA");
-			// Estabelece a conex√£o usando as credenciais das vari√°veis de ambiente
+			if (usuario == null || senha == null) {
+				throw new IllegalStateException("Vari·veis de ambiente DB_USUARIO e DB_SENHA n„o configuradas.");
+			}
+			System.out.println("URL: " + url);
+			System.out.println("Usuario: " + usuario);
+			System.out.println("Senaha: " + senha);
+			// Estabelece a conex„o usando as credenciais das variaveis de ambiente
 			return DriverManager.getConnection(url, usuario, senha);
 		} catch (SQLException e) {
 			e.printStackTrace();
