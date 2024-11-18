@@ -16,7 +16,7 @@ public class CotacaoService {
 
 	public Cotacao calcularCotacao(Segurado segurado, Seguro seguro) throws Exception {
 		// Implementar l�gica de cálculo baseada nas regras definidas
-		double valorBase = 100.0; // Valor base fictício
+		double valorBase = 100.0; // Valor base figurado
 		// Multiplicadores
 		double multiplicadorIdade = calcularMultiplicadorIdade(segurado.getDataNascimento());
 		double multiplicadorGenero = calcularMultiplicadorGenero(segurado.getGenero());
@@ -44,13 +44,13 @@ public class CotacaoService {
 			return 1.5;
 		if (idade >= 66 && idade <= 80)
 			return 2.0;
-		return 1.0; // Default
+		return 1.0; 
 	}
 
 	private double calcularMultiplicadorGenero(String genero) {
 		if (genero.equalsIgnoreCase("Feminino"))
 			return 0.9;
-		return 1.0; // Masculino ou Outro
+		return 1.0; 
 	}
 
 	private double calcularMultiplicadorProfissao(String profissao) {
@@ -59,7 +59,7 @@ public class CotacaoService {
 			return 1.0;
 		case "entrega":
 			return 1.2;
-		case "construção civil":
+		case "constru��o civil":
 			return 1.5;
 		default:
 			return 1.0;
@@ -89,5 +89,5 @@ public class CotacaoService {
 			return 1.0;
 		}
 	}
-	// Outros métodos relacionados à cotação
+
 }

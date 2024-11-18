@@ -25,7 +25,7 @@ public class CadastroSeguradoView extends JFrame {
 		nomeField = new JTextField();
 		dataNascimentoField = new JTextField();
 		generoBox = new JComboBox<>(new String[] { "Masculino", "Feminino", "Outro" });
-		generoBox.setModel(new DefaultComboBoxModel<String>(new String[] {"Masculino", "Feminino", "Prefiro nÃ£o informar", "Outro"}));
+		generoBox.setModel(new DefaultComboBoxModel<String>(new String[] {"Masculino", "Feminino", "Prefiro não informar", "Outro"}));
 		emailField = new JTextField();
 		telefoneField = new JTextField();
 		cpfField = new JTextField();
@@ -36,7 +36,7 @@ public class CadastroSeguradoView extends JFrame {
 		getContentPane().add(nomeField);
 		getContentPane().add(new JLabel("Data de Nascimento (dd/mm/yyyy):"));
 		getContentPane().add(dataNascimentoField);
-		getContentPane().add(new JLabel("GÃªnero:"));
+		getContentPane().add(new JLabel("Gênero:"));
 		getContentPane().add(generoBox);
 		getContentPane().add(new JLabel("E-mail:"));
 		getContentPane().add(emailField);

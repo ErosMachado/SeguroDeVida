@@ -9,7 +9,7 @@ public class DatabaseConnection {
 		try {
 			// pega o URL, o usuario e a senha do BD a partir das variaveis de ambiente
 			String url = "jdbc:oracle:thin:@oracle.fiap.com.br:1521:ORCL";
-			// lembrar de, caso dÃª erro, hÃ¡ duas possibilidades:
+			// lembrar de, caso dê erro, há duas possibilidades:
 			// 1. configuração no eclipse: run as --> Run Configurations --> Environment
 			// 2. adicionar no CMD (se for windows) com o comando "set"
 			String usuario = System.getenv("DB_USUARIO");
@@ -17,9 +17,6 @@ public class DatabaseConnection {
 			if (usuario == null || senha == null) {
 				throw new IllegalStateException("Variáveis de ambiente DB_USUARIO e DB_SENHA não configuradas.");
 			}
-			System.out.println("URL: " + url);
-			System.out.println("Usuario: " + usuario);
-			System.out.println("Senaha: " + senha);
 			// Estabelece a conexão usando as credenciais das variaveis de ambiente
 			return DriverManager.getConnection(url, usuario, senha);
 		} catch (SQLException e) {

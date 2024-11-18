@@ -8,7 +8,7 @@ public class SeguradoDAO {
     private DatabaseConnection conexao;
     private Connection connection;
 
-    // Construtor sem parâmetros
+    // Construtor sem parametros
     public SeguradoDAO() {
         this.conexao = new DatabaseConnection();
         this.connection = conexao.conectar();
