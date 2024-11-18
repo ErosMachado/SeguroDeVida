@@ -15,7 +15,7 @@ public class SeguradoDAO {
     }
 
     public void save(Segurado segurado) throws SQLException {
-        String sql = "INSERT INTO segurados (nome, data_nascimento, genero, email, telefone, cpf, cep) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO segurado (nome, data_nascimento, genero, email, telefone, cpf, cep, senha) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement stmt = connection.prepareStatement(sql);
         stmt.setString(1, segurado.getNome());
         stmt.setDate(2, Date.valueOf(segurado.getDataNascimento()));
@@ -24,6 +24,7 @@ public class SeguradoDAO {
         stmt.setString(5, segurado.getTelefone());
         stmt.setString(6, segurado.getCpf());
         stmt.setString(7, segurado.getCep());
+        stmt.setString(8, segurado.getSenha());
         stmt.executeUpdate();
         stmt.close();
     }

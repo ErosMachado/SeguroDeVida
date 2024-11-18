@@ -1,6 +1,7 @@
 package com.sementesdobrasil.model;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Segurado {
 	private String nome;
@@ -14,11 +15,12 @@ public class Segurado {
 
 	// Construtores
 
-	public Segurado(String nome, LocalDate dataNascimento, String genero, String email, String telefone, String cpf,
+	public Segurado(String nome, String dataNascimento, String genero, String email, String telefone, String cpf,
 			String cep, String senha) {
 		super();
 		this.nome = nome;
-		this.dataNascimento = dataNascimento;
+		DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		this.dataNascimento = LocalDate.parse(dataNascimento, formato);
 		this.genero = genero;
 		this.email = email;
 		this.telefone = telefone;
@@ -27,10 +29,17 @@ public class Segurado {
 		this.senha = senha;
 	}
 	//construtor criado para o controller
-	public Segurado(String nome2, LocalDate localDate, String genero2, String email2, String telefone2, String cpf2,
-			String cep2) {
-		// TODO Auto-generated constructor stub
-	}
+	public Segurado(String nome, String dataNascimento, String genero, String email, String telefone, String cpf,
+			String cep) {
+		this.nome = nome;
+		DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		this.dataNascimento = LocalDate.parse(dataNascimento, formato);
+		this.genero = genero;
+		this.email = email;
+		this.telefone = telefone;
+		this.cpf = cpf;
+		this.cep = cep;
+		}
 	
 	//construtor vazio (caso necessário)
 	public Segurado() {

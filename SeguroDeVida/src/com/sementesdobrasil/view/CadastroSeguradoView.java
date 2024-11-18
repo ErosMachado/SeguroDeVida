@@ -24,7 +24,7 @@ public class CadastroSeguradoView extends JFrame {
 		// Inicializa√ß√£o dos componentes
 		nomeField = new JTextField();
 		dataNascimentoField = new JTextField();
-		generoBox = new JComboBox<>(new String[] { "Masculino", "Feminino", "Outro" });
+		generoBox = new JComboBox<>(new String[] { "Masculino", "Feminino", "Prefiro n„o informar", "Outro" });
 		generoBox.setModel(new DefaultComboBoxModel<String>(new String[] {"Masculino", "Feminino", "Prefiro n„o informar", "Outro"}));
 		emailField = new JTextField();
 		telefoneField = new JTextField();
