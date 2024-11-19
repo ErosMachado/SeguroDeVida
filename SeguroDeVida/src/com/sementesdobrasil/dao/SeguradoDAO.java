@@ -9,7 +9,7 @@ public class SeguradoDAO {
 	private Connection connection = conexao.conectar();
 
 
-	public void save(Segurado segurado, Connection connection) throws SQLException {
+	public void save(Segurado segurado) throws SQLException {
 		String sql = "INSERT INTO t_segurado (nome, data_nascimento, genero, email, telefone, cpf, cep, senha, estado_civil) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		try (PreparedStatement stmt = connection.prepareStatement(sql)) {
 			stmt.setString(1, segurado.getNome());
@@ -32,5 +32,6 @@ public class SeguradoDAO {
 	public void setConnection(Connection connection) {
 		this.connection = connection;
 	}
+
 
 }

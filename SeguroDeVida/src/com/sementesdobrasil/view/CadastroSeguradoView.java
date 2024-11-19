@@ -20,9 +20,10 @@ public class CadastroSeguradoView extends JFrame {
     private JTextField cepField;
     private JPasswordField senhaField;
     private JPasswordField confirmarSenhaField;
-    private JButton salvarButton, limparButton, sairButton;
+    private JButton limparButton, sairButton;
     private JLabel label_9;
     private JComboBox<String> estadoCivilBox;
+    private JButton salvarButton;
 
     public CadastroSeguradoView() {
         setTitle("Cadastro de Segurado");
@@ -48,10 +49,6 @@ public class CadastroSeguradoView extends JFrame {
         senhaField.setBounds(360, 412, 350, 41);
         confirmarSenhaField = new JPasswordField();
         confirmarSenhaField.setBounds(360, 463, 350, 41);
-
-        // Inicializando os botões
-        salvarButton = new JButton("Salvar");
-        salvarButton.setBounds(198, 515, 150, 45);
         limparButton = new JButton("Limpar");
         limparButton.setBounds(0, 1, 150, 45);
         sairButton = new JButton("Sair");
@@ -95,11 +92,8 @@ public class CadastroSeguradoView extends JFrame {
         label_8.setBounds(0, 463, 350, 41);
         getContentPane().add(label_8);
         getContentPane().add(confirmarSenhaField);
-        
-        // Botões
-        getContentPane().add(salvarButton);
         JPanel buttonPanel = new JPanel();
-        buttonPanel.setBounds(360, 515, 350, 66);
+        buttonPanel.setBounds(184, 515, 350, 66);
         buttonPanel.setLayout(null);
         buttonPanel.add(limparButton);
         buttonPanel.add(sairButton);
@@ -114,8 +108,12 @@ public class CadastroSeguradoView extends JFrame {
         getContentPane().add(estadoCivilBox);
         
         JButton voltarBtn = new JButton("Voltar");
-        voltarBtn.setBounds(24, 515, 150, 45);
+        voltarBtn.setBounds(10, 515, 150, 45);
         getContentPane().add(voltarBtn);
+        
+        salvarButton = new JButton("Salvar");
+        salvarButton.setBounds(550, 515, 150, 45);
+        getContentPane().add(salvarButton);
 
         
         
