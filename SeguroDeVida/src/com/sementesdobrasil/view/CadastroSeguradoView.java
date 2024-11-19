@@ -51,11 +51,11 @@ public class CadastroSeguradoView extends JFrame {
 
         // Inicializando os botões
         salvarButton = new JButton("Salvar");
-        salvarButton.setBounds(0, 515, 350, 41);
+        salvarButton.setBounds(198, 515, 150, 45);
         limparButton = new JButton("Limpar");
-        limparButton.setBounds(0, 1, 170, 37);
+        limparButton.setBounds(0, 1, 150, 45);
         sairButton = new JButton("Sair");
-        sairButton.setBounds(180, 0, 170, 38);
+        sairButton.setBounds(180, 0, 150, 45);
         getContentPane().setLayout(null);
 
         // Adicionando os labels e campos no layout
@@ -99,7 +99,7 @@ public class CadastroSeguradoView extends JFrame {
         // Botões
         getContentPane().add(salvarButton);
         JPanel buttonPanel = new JPanel();
-        buttonPanel.setBounds(360, 515, 350, 41);
+        buttonPanel.setBounds(360, 515, 350, 66);
         buttonPanel.setLayout(null);
         buttonPanel.add(limparButton);
         buttonPanel.add(sairButton);
@@ -112,6 +112,10 @@ public class CadastroSeguradoView extends JFrame {
         estadoCivilBox =  new JComboBox<>(new String[] {"", "Solteiro", "Casado", "Viuvo", "Outro" });
         estadoCivilBox.setBounds(360, 156, 350, 41);
         getContentPane().add(estadoCivilBox);
+        
+        JButton voltarBtn = new JButton("Voltar");
+        voltarBtn.setBounds(24, 515, 150, 45);
+        getContentPane().add(voltarBtn);
 
         
         
