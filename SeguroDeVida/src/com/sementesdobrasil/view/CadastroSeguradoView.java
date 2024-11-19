@@ -36,7 +36,7 @@ public class CadastroSeguradoView extends JFrame {
         dataNascimentoField = new JTextField();
         dataNascimentoField.setBounds(360, 56, 350, 41);
         generoBox = new JComboBox<>(new String[] {"", "Masculino", "Feminino", "Prefiro não informar", "Outro" });
-        generoBox.setBounds(360, 107, 350, 41);
+        generoBox.setBounds(360, 108, 350, 41);
         emailField = new JTextField();
         emailField.setBounds(360, 208, 350, 41);
         telefoneField = new JTextField();

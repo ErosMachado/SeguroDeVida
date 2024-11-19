@@ -1,33 +1,27 @@
 package com.sementesdobrasil.view;
 
-import java.awt.EventQueue;
-import javax.swing.JFrame;
-import javax.swing.JTextField;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPasswordField;
-import java.awt.Label;
+import java.awt.*;
+import javax.swing.*;
+
+import com.sementesdobrasil.controller.CadastroSeguradoController;
+import com.sementesdobrasil.service.SeguradoService;
 
 public class LoginBuilder {
 
     private JFrame frame;
     private JTextField emailField;
-    private JTextField phoneField;
     private JPasswordField passwordField;
 
     /**
      * Launch the application.
      */
     public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    LoginBuilder window = new LoginBuilder();
-                    window.frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+        EventQueue.invokeLater(() -> {
+            try {
+                LoginBuilder window = new LoginBuilder();
+                window.frame.setVisible(true);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         });
     }
@@ -43,51 +37,81 @@ public class LoginBuilder {
      * Initialize the contents of the frame.
      */
     private void initialize() {
-        // Configuração do JFrame (janela principal)
         frame = new JFrame();
-        frame.setBounds(100, 100, 513, 300);
+        frame.setBounds(100, 100, 600, 400);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().setLayout(null);
 
-        // E-mail
+        // Cor de fundo
+        frame.getContentPane().setBackground(new Color(245, 245, 245));
+
+        // T�tulo da tela
+        JLabel titleLabel = new JLabel("Bem-vindo!");
+        titleLabel.setFont(new Font("Arial", Font.BOLD, 28));
+        titleLabel.setForeground(new Color(60, 60, 60));
+        titleLabel.setBounds(200, 30, 200, 40);
+        titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        frame.getContentPane().add(titleLabel);
+
+        // Subt�tulo
+        JLabel subtitleLabel = new JLabel("Fa�a login para continuar");
+        subtitleLabel.setFont(new Font("Arial", Font.PLAIN, 16));
+        subtitleLabel.setForeground(new Color(100, 100, 100));
+        subtitleLabel.setBounds(180, 70, 240, 25);
+        subtitleLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        frame.getContentPane().add(subtitleLabel);
+
+        // Campo de e-mail
         JLabel emailLabel = new JLabel("E-mail:");
-        emailLabel.setBounds(58, 37, 80, 14);
+        emailLabel.setFont(new Font("Arial", Font.PLAIN, 14));
+        emailLabel.setBounds(110, 120, 380, 20);
+        emailLabel.setForeground(new Color(60, 60, 60));
         frame.getContentPane().add(emailLabel);
 
         emailField = new JTextField();
-        emailField.setBounds(58, 61, 392, 23);
+        emailField.setFont(new Font("Arial", Font.PLAIN, 14));
+        emailField.setBounds(110, 140, 380, 30);
+        emailField.setBorder(BorderFactory.createLineBorder(new Color(200, 200, 200)));
         frame.getContentPane().add(emailField);
-        emailField.setColumns(10);
-        
-        // Senha
+
+        // Campo de senha
         JLabel passwordLabel = new JLabel("Senha:");
-        passwordLabel.setBounds(58, 95, 80, 14);
+        passwordLabel.setFont(new Font("Arial", Font.PLAIN, 14));
+        passwordLabel.setBounds(110, 190, 380, 20);
+        passwordLabel.setForeground(new Color(60, 60, 60));
         frame.getContentPane().add(passwordLabel);
 
         passwordField = new JPasswordField();
-        passwordField.setBounds(58, 109, 392, 23);
+        passwordField.setFont(new Font("Arial", Font.PLAIN, 14));
+        passwordField.setBounds(110, 210, 380, 30);
+        passwordField.setBorder(BorderFactory.createLineBorder(new Color(200, 200, 200)));
         frame.getContentPane().add(passwordField);
 
-        // Botão Entrar
+        // Bot�o de login
         JButton loginButton = new JButton("Entrar");
-        loginButton.setBounds(124, 166, 89, 23);
+        loginButton.setFont(new Font("Arial", Font.BOLD, 14));
+        loginButton.setBounds(110, 270, 180, 40);
+        loginButton.setBackground(new Color(0, 123, 255));
+        loginButton.setForeground(Color.WHITE);
+        loginButton.setFocusPainted(false);
+        loginButton.setBorder(BorderFactory.createEmptyBorder());
         frame.getContentPane().add(loginButton);
 
-        // Botão Criar Cadastro
+        // Bot�o de cadastro
         JButton registerButton = new JButton("Criar Cadastro");
-        registerButton.setBounds(241, 166, 141, 23);
+        registerButton.setFont(new Font("Arial", Font.BOLD, 14));
+        registerButton.setBounds(310, 270, 180, 40);
+        registerButton.setBackground(new Color(40, 167, 69));
+        registerButton.setForeground(Color.WHITE);
+        registerButton.setFocusPainted(false);
+        registerButton.setBorder(BorderFactory.createEmptyBorder());
         frame.getContentPane().add(registerButton);
-        
-        Label label = new Label("New label");
-        label.setBounds(58, 138, 392, 22);
-        frame.getContentPane().add(label);
 
-        // Ação para o botão "Entrar"
+        // A��es dos bot�es
         loginButton.addActionListener(e -> {
             String email = emailField.getText();
             char[] password = passwordField.getPassword();
 
-            // Simulação de validação de login
             if (email.isEmpty() || password.length == 0) {
                 JOptionPane.showMessageDialog(frame, "Preencha todos os campos.");
             } else {
@@ -95,10 +119,12 @@ public class LoginBuilder {
             }
         });
 
-        // Ação para o botão "Criar Cadastro"
         registerButton.addActionListener(e -> {
-            JOptionPane.showMessageDialog(frame, "Tela de cadastro será aberta...");
-            // Lógica de abertura de tela de cadastro
+            JOptionPane.showMessageDialog(frame, "Tela de cadastro vai ser aberta...");
+            CadastroSeguradoView view = new CadastroSeguradoView();
+            SeguradoService service = new SeguradoService();
+            new CadastroSeguradoController(view, service);
+            view.setVisible(true);
         });
     }
 }
