@@ -18,7 +18,7 @@ public class CadastroSeguradoController {
 	}
 
 	public CadastroSeguradoController(CadastroSeguradoView view, SeguradoService service) {
-		this.view = view;
+		this.view = view;//
 		this.service = service;
 		initController();
 	}
@@ -46,13 +46,13 @@ public class CadastroSeguradoController {
 
 			if (nome.isEmpty() || dataNascimento.isEmpty() || email.isEmpty() || cpf.isEmpty() || cep.isEmpty()
 					|| senha.isEmpty() || confirmarSenha.isEmpty() || estadoCivil.isEmpty()) {
-				JOptionPane.showMessageDialog(view, "Todos os campos são obrigatórios.", "Erro",
+				JOptionPane.showMessageDialog(view, "Todos os campos sï¿½o obrigatï¿½rios.", "Erro",
 						JOptionPane.ERROR_MESSAGE);
 				return;
 			}
 			
 			if (!senha.equals(confirmarSenha)) {
-                JOptionPane.showMessageDialog(view, "As senhas não coincidem.", "Erro",
+                JOptionPane.showMessageDialog(view, "As senhas nï¿½o coincidem.", "Erro",
                         JOptionPane.ERROR_MESSAGE);
                 return;
             }
