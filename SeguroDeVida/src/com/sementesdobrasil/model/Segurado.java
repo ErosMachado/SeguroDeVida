@@ -12,11 +12,12 @@ public class Segurado {
 	private String cpf;
 	private String cep;
 	private String senha;
+	private String estadoCivil;
 
 	// Construtores
 
 	public Segurado(String nome, String dataNascimento, String genero, String email, String telefone, String cpf,
-			String cep, String senha) {
+			String cep, String senha, String estadoCivil) {
 		super();
 		this.nome = nome;
 		DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -27,8 +28,18 @@ public class Segurado {
 		this.cpf = cpf;
 		this.cep = cep;
 		this.senha = senha;
+		this.estadoCivil = estadoCivil;
 	}
-	//construtor criado para o controller
+
+	public String getEstadoCivil() {
+		return estadoCivil;
+	}
+
+	public void setEstadoCivil(String estadoCivil) {
+		this.estadoCivil = estadoCivil;
+	}
+
+	// construtor criado para o controller
 	public Segurado(String nome, String dataNascimento, String genero, String email, String telefone, String cpf,
 			String cep) {
 		this.nome = nome;
@@ -39,11 +50,6 @@ public class Segurado {
 		this.telefone = telefone;
 		this.cpf = cpf;
 		this.cep = cep;
-		}
-	
-	//construtor vazio (caso necessário)
-	public Segurado() {
-		
 	}
 
 	// Getters e Setters

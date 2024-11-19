@@ -7,13 +7,19 @@ public class SeguradoService {
     private SeguradoDAO seguradoDAO;
 
     public SeguradoService() {
-        // Instancia o SeguradoDAO sem parâmetros
-        this.seguradoDAO = new SeguradoDAO();
+        this.setSeguradoDAO(new SeguradoDAO());
     }
 
     public void salvarSegurado(Segurado segurado) throws Exception {
-        // Validações adicionais podem ser feitas aqui
-        seguradoDAO.save(segurado);
+        System.out.println("Recebendo segurado no Service: " + segurado.toString());
+        getSeguradoDAO().save(segurado);
     }
-    // Outros métodos, como buscar segurados, etc.
+
+	public SeguradoDAO getSeguradoDAO() {
+		return seguradoDAO;
+	}
+
+	public void setSeguradoDAO(SeguradoDAO seguradoDAO) {
+		this.seguradoDAO = seguradoDAO;
+	}
 }

@@ -26,7 +26,6 @@ public class CadastroSeguradoController {
 
 	private void salvarSegurado() {
 		try {
-			// validação dos dados
 			String nome = view.getNome();
 			String dataNascimento = view.getDataNascimento();
 			String genero = view.getGenero();
@@ -34,16 +33,29 @@ public class CadastroSeguradoController {
 			String telefone = view.getTelefone();
 			String cpf = view.getCpf();
 			String cep = view.getCep();
-			if (nome.isEmpty() || dataNascimento.isEmpty() || email.isEmpty() || cpf.isEmpty() || cep.isEmpty()) {
-				JOptionPane.showMessageDialog(view, "Todos os campos sÃ£o obrigatórios.", "Erro",
+			String senha = view.getSenha(); 
+            String confirmarSenha = view.getConfirmarSenha();
+			String estadoCivil = view.getEstadoCivil(); 
+
+			if (nome.isEmpty() || dataNascimento.isEmpty() || email.isEmpty() || cpf.isEmpty() || cep.isEmpty()
+					|| senha.isEmpty() || confirmarSenha.isEmpty() || estadoCivil.isEmpty()) {
+				JOptionPane.showMessageDialog(view, "Todos os campos são obrigatórios.", "Erro",
 						JOptionPane.ERROR_MESSAGE);
 				return;
 			}
-			Segurado segurado = new Segurado(nome, dataNascimento, genero, email, telefone, cpf, cep);
+			
+			if (!senha.equals(confirmarSenha)) {
+                JOptionPane.showMessageDialog(view, "As senhas não coincidem.", "Erro",
+                        JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+			Segurado segurado = new Segurado(nome, dataNascimento, genero, email, telefone, cpf, cep, senha,
+					estadoCivil);
 			service.salvarSegurado(segurado);
 			JOptionPane.showMessageDialog(view, "Segurado cadastrado com sucesso!", "Sucesso",
 					JOptionPane.INFORMATION_MESSAGE);
-			view.dispose(); // Fecha a janela apÃ³s salvar
+			view.dispose();
 		} catch (Exception ex) {
 			JOptionPane.showMessageDialog(view, "Erro ao salvar segurado: " + ex.getMessage(), "Erro",
 					JOptionPane.ERROR_MESSAGE);

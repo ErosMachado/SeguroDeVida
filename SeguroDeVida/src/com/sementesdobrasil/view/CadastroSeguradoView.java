@@ -4,40 +4,49 @@ import javax.swing.*;
 import java.awt.GridLayout;
 import java.awt.event.*;
 
-
 public class CadastroSeguradoView extends JFrame {
-	private static final long serialVersionUID = 1L;//mantenho?
+	private static final long serialVersionUID = 1L;
 	private JTextField nomeField;
 	private JTextField dataNascimentoField;
-	private JComboBox<String> generoBox;
+	private JComboBox<String> generoBox, estadoCivilBox;
 	private JTextField emailField;
 	private JTextField telefoneField;
 	private JTextField cpfField;
-	private JTextField cepField;
+	private JTextField cepField, senhaField, confirmarSenhaField;
 	private JButton salvarButton;
 
 	public CadastroSeguradoView() {
 		setTitle("Cadastro de Segurado");
-		setSize(726, 400);
+		setSize(773, 400);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(new GridLayout(8, 2));
-		// Inicializa√ß√£o dos componentes
+
 		nomeField = new JTextField();
 		dataNascimentoField = new JTextField();
-		generoBox = new JComboBox<>(new String[] { "Masculino", "Feminino", "Prefiro n„o informar", "Outro" });
-		generoBox.setModel(new DefaultComboBoxModel<String>(new String[] {"Masculino", "Feminino", "Prefiro n„o informar", "Outro"}));
+		generoBox = new JComboBox<>(new String[] { "", "Masculino", "Feminino", "Prefiro n„o informar", "Outro" });
+		generoBox.setModel(new DefaultComboBoxModel<String>(
+				new String[] { "", "Masculino", "Feminino", "Prefiro n„o informar", "Outro" }));
+		estadoCivilBox = new JComboBox<>(
+				new String[] { "", "Solteiro(a)", "Casado(a)", "Divorciado(a)", "viuvo(a)", "Outro" });
+		estadoCivilBox.setModel(new DefaultComboBoxModel<String>(
+				new String[] { "", "Solteiro(a)", "Casado(a)", "Divorciado(a)", "viuvo(a)", "Outro" }));
 		emailField = new JTextField();
 		telefoneField = new JTextField();
 		cpfField = new JTextField();
 		cepField = new JTextField();
+		senhaField = new JTextField();
+		confirmarSenhaField = new JTextField();
 		salvarButton = new JButton("Salvar");
-		// Adicionando componentes √† tela
+		
+		
 		getContentPane().add(new JLabel("Nome:"));
 		getContentPane().add(nomeField);
 		getContentPane().add(new JLabel("Data de Nascimento (dd/mm/yyyy):"));
 		getContentPane().add(dataNascimentoField);
 		getContentPane().add(new JLabel("GÍnero:"));
 		getContentPane().add(generoBox);
+		getContentPane().add(new JLabel("Estado CivÌl:"));
+		getContentPane().add(estadoCivilBox);
 		getContentPane().add(new JLabel("E-mail:"));
 		getContentPane().add(emailField);
 		getContentPane().add(new JLabel("Telefone:"));
@@ -47,17 +56,50 @@ public class CadastroSeguradoView extends JFrame {
 		getContentPane().add(new JLabel("CEP:"));
 		getContentPane().add(cepField);
 		getContentPane().add(new JLabel(""));
+		getContentPane().add(new JLabel("Senha:"));
+		getContentPane().add(senhaField);
+		getContentPane().add(new JLabel(""));
+		getContentPane().add(new JLabel("Confirmar Senha:"));
+		getContentPane().add(confirmarSenhaField);
+		getContentPane().add(new JLabel(""));
 		getContentPane().add(salvarButton);
-		// Adicionando ActionListener para o bot√£o salvar
+
 		salvarButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// L√≥gica para salvar segurado
-				// Valida√ß√£o e chamada ao Controller
+
 			}
 		});
 	}
 
-	// M√©todos para acessar os campos
+	public JComboBox<String> getEstadoCivilBox() {
+		return estadoCivilBox;
+	}
+
+	public void setEstadoCivilBox(JComboBox<String> estadoCivilBox) {
+		this.estadoCivilBox = estadoCivilBox;
+	}
+
+	public JTextField getSenhaField() {
+		return senhaField;
+	}
+
+	public void setSenhaField(JTextField senhaField) {
+		this.senhaField = senhaField;
+	}
+
+	public JTextField getConfirmarSenhaField() {
+		return confirmarSenhaField;
+	}
+
+	public void setConfirmarSenhaField(JTextField confirmarSenhaField) {
+		this.confirmarSenhaField = confirmarSenhaField;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	// Metodos para acessar os campos
 	public String getNome() {
 		return nomeField.getText();
 	}
@@ -68,6 +110,10 @@ public class CadastroSeguradoView extends JFrame {
 
 	public String getGenero() {
 		return (String) generoBox.getSelectedItem();
+	}
+	
+	public String getEstadoCivil() {
+		return (String) estadoCivilBox.getSelectedItem();
 	}
 
 	public String getEmail() {
@@ -85,13 +131,20 @@ public class CadastroSeguradoView extends JFrame {
 	public String getCep() {
 		return cepField.getText();
 	}
+	
+	public String getSenha() {
+		return senhaField.getText();
+	}
+	public String getConfirmarSenha() {
+		return confirmarSenhaField.getText();
+	}
 
-	// M√©todo para adicionar ActionListener no bot√£o salvar
+	// Metodo para adicionar ActionListener no botao salvar
 	public void addSalvarListener(ActionListener listener) {
 		salvarButton.addActionListener(listener);
 	}
-	
-	//getters and setters
+
+	// getters and setters
 
 	public JTextField getNomeField() {
 		return nomeField;
@@ -156,4 +209,6 @@ public class CadastroSeguradoView extends JFrame {
 	public void setSalvarButton(JButton salvarButton) {
 		this.salvarButton = salvarButton;
 	}
+
+	
 }
