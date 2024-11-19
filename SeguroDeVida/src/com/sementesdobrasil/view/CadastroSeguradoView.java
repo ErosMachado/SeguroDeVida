@@ -34,7 +34,7 @@ public class CadastroSeguradoView extends JFrame {
         nomeField.setBounds(360, 5, 350, 41);
         dataNascimentoField = new JTextField();
         dataNascimentoField.setBounds(360, 56, 350, 41);
-        generoBox = new JComboBox<>(new String[] {"", "Masculino", "Feminino", "Prefiro não informar", "Outro" });
+        generoBox = new JComboBox<>(new String[] {"", "Masculino", "Feminino", "Prefiro nï¿½o informar", "Outro" });
         generoBox.setBounds(360, 107, 350, 41);
         emailField = new JTextField();
         emailField.setBounds(360, 208, 350, 41);
@@ -49,7 +49,7 @@ public class CadastroSeguradoView extends JFrame {
         confirmarSenhaField = new JPasswordField();
         confirmarSenhaField.setBounds(360, 463, 350, 41);
 
-        // Inicializando os botões
+        // Inicializando os botï¿½es
         salvarButton = new JButton("Salvar");
         salvarButton.setBounds(198, 515, 150, 45);
         limparButton = new JButton("Limpar");
@@ -67,9 +67,9 @@ public class CadastroSeguradoView extends JFrame {
         label_1.setBounds(0, 56, 350, 41);
         getContentPane().add(label_1);
         getContentPane().add(dataNascimentoField);
-        JLabel label_2 = new JLabel("Gênero:");
-        label_2.setBounds(0, 107, 350, 41);
-        getContentPane().add(label_2);
+        JLabel lblGnero = new JLabel("GÃªnero:");
+        lblGnero.setBounds(0, 107, 350, 41);
+        getContentPane().add(lblGnero);
         getContentPane().add(generoBox);
         JLabel label_3 = new JLabel("E-mail:");
         label_3.setBounds(0, 208, 350, 41);
@@ -96,7 +96,7 @@ public class CadastroSeguradoView extends JFrame {
         getContentPane().add(label_8);
         getContentPane().add(confirmarSenhaField);
         
-        // Botões
+        // Botï¿½es
         getContentPane().add(salvarButton);
         JPanel buttonPanel = new JPanel();
         buttonPanel.setBounds(360, 515, 350, 66);
