@@ -108,10 +108,25 @@ public class CadastroSeguradoView extends JFrame {
         getContentPane().add(estadoCivilBox);
         
         JButton voltarBtn = new JButton("Voltar");
+        voltarBtn.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		
+        		 TelaPrincipal main = new TelaPrincipal();
+                 main.setVisible(true);
+        	}
+        	
+        	
+        });
         voltarBtn.setBounds(10, 515, 150, 45);
         getContentPane().add(voltarBtn);
         
         salvarButton = new JButton("Salvar");
+        
+        salvarButton.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        	}
+        });
+        
         salvarButton.setBounds(550, 515, 150, 45);
         getContentPane().add(salvarButton);
 

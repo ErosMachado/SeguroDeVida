@@ -32,6 +32,10 @@ public class LoginBuilder {
     public LoginBuilder() {
         initialize();
     }
+    
+    public JFrame getFrame() {
+        return frame;
+    }
 
     /**
      * Initialize the contents of the frame.

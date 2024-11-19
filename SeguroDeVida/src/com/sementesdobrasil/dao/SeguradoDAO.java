@@ -24,6 +24,24 @@ public class SeguradoDAO {
 			stmt.executeUpdate();
 		}
 	}
+	
+	
+	public boolean validarCredenciais(String email, String senha, Connection connection) {
+        String sql = "SELECT COUNT(*) FROM t_segurados WHERE email = ? AND senha = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setString(1, email);
+            stmt.setString(2, senha);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt(1) > 0; // Retorna true se existir o registro
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 
 	public Connection getConnection() {
 		return connection;
