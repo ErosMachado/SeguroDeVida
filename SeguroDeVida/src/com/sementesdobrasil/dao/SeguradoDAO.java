@@ -5,13 +5,9 @@ import com.sementesdobrasil.util.DatabaseConnection;
 import java.sql.*;
 
 public class SeguradoDAO {
-	private DatabaseConnection conexao;
-	private Connection connection;
+	DatabaseConnection conexao = new DatabaseConnection();
+	private Connection connection = conexao.conectar();
 
-	public SeguradoDAO() throws SQLException {
-		this.conexao = new DatabaseConnection();
-		this.setConnection(conexao.conectar());
-	}
 
 	public void save(Segurado segurado, Connection connection) throws SQLException {
 		String sql = "INSERT INTO t_segurado (nome, data_nascimento, genero, email, telefone, cpf, cep, senha, estado_civil) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";

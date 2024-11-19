@@ -1,6 +1,10 @@
 package com.sementesdobrasil.view;
 
 import javax.swing.*;
+
+import com.sementesdobrasil.controller.CadastroSeguradoController;
+import com.sementesdobrasil.service.SeguradoService;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -26,7 +30,7 @@ public class TelaPrincipal extends JFrame {
 		labelTitulo.setForeground(new Color(50, 50, 50));
 		getContentPane().add(labelTitulo);
 
-		// Botão de Login
+		// Botï¿½o de Login
 		JButton btnLogin = new JButton("Login");
 		btnLogin.setBounds(200, 120, 200, 40);
 		btnLogin.setFont(new Font("Arial", Font.PLAIN, 16));
@@ -42,7 +46,7 @@ public class TelaPrincipal extends JFrame {
 		});
 		getContentPane().add(btnLogin);
 
-		// Botão de Cadastro
+		// Botï¿½o de Cadastro
 		JButton btnCadastro = new JButton("Cadastro");
 		btnCadastro.setBounds(200, 180, 200, 40);
 		btnCadastro.setFont(new Font("Arial", Font.PLAIN, 16));
@@ -53,25 +57,28 @@ public class TelaPrincipal extends JFrame {
 		btnCadastro.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new CadastroSeguradoView();
-				// setVisible(false);
+				CadastroSeguradoView view = new CadastroSeguradoView();
+                SeguradoService service = new SeguradoService();
+                new CadastroSeguradoController(view, service);
+                view.setVisible(true);
+                setVisible(false);
 			}
 		});
 		getContentPane().add(btnCadastro);
 
-		// Botão de Simulação de Cotação
-		JButton btnSimulacao = new JButton("Simular Cotação");
+		// Botï¿½o de Simulaï¿½ï¿½o de Cotaï¿½ï¿½o
+		JButton btnSimulacao = new JButton("Simular Cotacao");
 		btnSimulacao.setBounds(200, 240, 200, 40);
 		btnSimulacao.setFont(new Font("Arial", Font.PLAIN, 16));
 		btnSimulacao.setBackground(new Color(255, 193, 7)); // Cor amarela
 		btnSimulacao.setForeground(Color.WHITE); // Cor da fonte
 		btnSimulacao.setFocusPainted(false);
-		btnSimulacao.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10)); // Remove as bordas padrão
+		btnSimulacao.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10)); // Remove as bordas padrï¿½o
 		btnSimulacao.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// Redirecionar para a tela de simulação (ainda vazia)
-				System.out.println("Abrindo tela de simulação...");
+				// Redirecionar para a tela de simulaï¿½ï¿½o (ainda vazia)
+				System.out.println("Abrindo tela de simulacao...");
 			}
 		});
 		getContentPane().add(btnSimulacao);

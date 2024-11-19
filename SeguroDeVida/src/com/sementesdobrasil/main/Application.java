@@ -1,7 +1,5 @@
 package com.sementesdobrasil.main;
-import com.sementesdobrasil.view.CadastroSeguradoView;
-import com.sementesdobrasil.service.SeguradoService;
-import com.sementesdobrasil.controller.CadastroSeguradoController;
+import com.sementesdobrasil.view.TelaPrincipal;
 import javax.swing.SwingUtilities;
 
 public class Application {
@@ -9,10 +7,8 @@ public class Application {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                CadastroSeguradoView view = new CadastroSeguradoView();
-                SeguradoService service = new SeguradoService();
-                new CadastroSeguradoController(view, service);
-                view.setVisible(true);
+                TelaPrincipal main = new TelaPrincipal();
+                main.setVisible(true);
             }
         });
     }
