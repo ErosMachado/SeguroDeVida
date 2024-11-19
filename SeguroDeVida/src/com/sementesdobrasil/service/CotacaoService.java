@@ -3,6 +3,8 @@ package com.sementesdobrasil.service;
 import com.sementesdobrasil.model.Cotacao;
 import com.sementesdobrasil.model.Segurado;
 import com.sementesdobrasil.model.Seguro;
+
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.Period;
 import com.sementesdobrasil.dao.CotacaoDAO;
@@ -10,7 +12,7 @@ import com.sementesdobrasil.dao.CotacaoDAO;
 public class CotacaoService {
 	private CotacaoDAO cotacaoDAO;
 
-	public CotacaoService() {
+	public CotacaoService() throws SQLException {
 		this.cotacaoDAO = new CotacaoDAO();
 	}
 

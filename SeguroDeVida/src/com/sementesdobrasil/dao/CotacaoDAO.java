@@ -5,17 +5,14 @@ import com.sementesdobrasil.util.DatabaseConnection;
 import java.sql.*;
 
 public class CotacaoDAO {
-	DatabaseConnection conexao = new DatabaseConnection();
-	private Connection connection = conexao.conectar();
+	private DatabaseConnection conexao;
+	private Connection connection;
 
-	public CotacaoDAO(DatabaseConnection conexao, Connection connection) {
-		super();
-		this.conexao = conexao;
-		this.connection = connection;
+	public CotacaoDAO() throws SQLException {
+		this.conexao = new DatabaseConnection();
+		this.setConnection(conexao.conectar());
 	}
 
-	public CotacaoDAO() {
-	}
 
 	public void save(Cotacao cotacao) throws SQLException {
 		String sql = "INSERT INTO cotacoes (segurado_id, seguro_tipo, valor_final, corretor_id) VALUES (?, ?, ?, ?)";
@@ -27,5 +24,13 @@ public class CotacaoDAO {
 		stmt.executeUpdate();
 		stmt.close();
 	}
-	// Métodos adicionais: buscar, atualizar, deletar cotacoes
+	
+	public Connection getConnection() {
+		return connection;
+	}
+
+	public void setConnection(Connection connection) {
+		this.connection = connection;
+	}
+	// Metodos adicionais: buscar, atualizar, deletar cotacoes
 }

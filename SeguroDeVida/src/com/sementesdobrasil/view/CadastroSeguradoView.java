@@ -1,214 +1,199 @@
 package com.sementesdobrasil.view;
 
 import javax.swing.*;
-import java.awt.GridLayout;
+
+
+
 import java.awt.event.*;
 
 public class CadastroSeguradoView extends JFrame {
+    /**
+	 * 
+	 */
 	private static final long serialVersionUID = 1L;
 	private JTextField nomeField;
-	private JTextField dataNascimentoField;
-	private JComboBox<String> generoBox, estadoCivilBox;
-	private JTextField emailField;
-	private JTextField telefoneField;
-	private JTextField cpfField;
-	private JTextField cepField, senhaField, confirmarSenhaField;
-	private JButton salvarButton;
+    private JTextField dataNascimentoField;
+    private JComboBox<String> generoBox;
+    private JTextField emailField;
+    private JTextField telefoneField;
+    private JTextField cpfField;
+    private JTextField cepField;
+    private JPasswordField senhaField;
+    private JPasswordField confirmarSenhaField;
+    private JComboBox<String> estadoCivilBox;
+    private JButton salvarButton, limparButton, sairButton;
 
-	public CadastroSeguradoView() {
-		setTitle("Cadastro de Segurado");
-		setSize(773, 400);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		getContentPane().setLayout(new GridLayout(8, 2));
+    public CadastroSeguradoView() {
+        setTitle("Cadastro de Segurado");
+        setSize(726, 600);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		nomeField = new JTextField();
-		dataNascimentoField = new JTextField();
-		generoBox = new JComboBox<>(new String[] { "", "Masculino", "Feminino", "Prefiro não informar", "Outro" });
-		generoBox.setModel(new DefaultComboBoxModel<String>(
-				new String[] { "", "Masculino", "Feminino", "Prefiro não informar", "Outro" }));
-		estadoCivilBox = new JComboBox<>(
-				new String[] { "", "Solteiro(a)", "Casado(a)", "Divorciado(a)", "viuvo(a)", "Outro" });
-		estadoCivilBox.setModel(new DefaultComboBoxModel<String>(
-				new String[] { "", "Solteiro(a)", "Casado(a)", "Divorciado(a)", "viuvo(a)", "Outro" }));
-		emailField = new JTextField();
-		telefoneField = new JTextField();
-		cpfField = new JTextField();
-		cepField = new JTextField();
-		senhaField = new JTextField();
-		confirmarSenhaField = new JTextField();
-		salvarButton = new JButton("Salvar");
-		
-		
-		getContentPane().add(new JLabel("Nome:"));
-		getContentPane().add(nomeField);
-		getContentPane().add(new JLabel("Data de Nascimento (dd/mm/yyyy):"));
-		getContentPane().add(dataNascimentoField);
-		getContentPane().add(new JLabel("Gênero:"));
-		getContentPane().add(generoBox);
-		getContentPane().add(new JLabel("Estado Civíl:"));
-		getContentPane().add(estadoCivilBox);
-		getContentPane().add(new JLabel("E-mail:"));
-		getContentPane().add(emailField);
-		getContentPane().add(new JLabel("Telefone:"));
-		getContentPane().add(telefoneField);
-		getContentPane().add(new JLabel("CPF:"));
-		getContentPane().add(cpfField);
-		getContentPane().add(new JLabel("CEP:"));
-		getContentPane().add(cepField);
-		getContentPane().add(new JLabel(""));
-		getContentPane().add(new JLabel("Senha:"));
-		getContentPane().add(senhaField);
-		getContentPane().add(new JLabel(""));
-		getContentPane().add(new JLabel("Confirmar Senha:"));
-		getContentPane().add(confirmarSenhaField);
-		getContentPane().add(new JLabel(""));
-		getContentPane().add(salvarButton);
+        // Inicializando os campos
+        nomeField = new JTextField();
+        nomeField.setBounds(360, 5, 350, 41);
+        dataNascimentoField = new JTextField();
+        dataNascimentoField.setBounds(360, 56, 350, 41);
+        generoBox = new JComboBox<>(new String[] {"", "Masculino", "Feminino", "Prefiro não informar", "Outro" });
+        generoBox.setBounds(360, 107, 350, 41);
+        emailField = new JTextField();
+        emailField.setBounds(360, 158, 350, 41);
+        telefoneField = new JTextField();
+        telefoneField.setBounds(360, 209, 350, 41);
+        cpfField = new JTextField();
+        cpfField.setBounds(360, 260, 350, 41);
+        cepField = new JTextField();
+        cepField.setBounds(360, 311, 350, 41);
+        senhaField = new JPasswordField();
+        senhaField.setBounds(360, 362, 350, 41);
+        confirmarSenhaField = new JPasswordField();
+        confirmarSenhaField.setBounds(360, 413, 350, 41);
+        estadoCivilBox = new JComboBox<>(new String[] {"", "Solteiro(a)", "Casado(a)", "Divorciado(a)", "Viúvo(a)", "Outro" });
+        estadoCivilBox.setBounds(360, 464, 350, 41);
 
-		salvarButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+        // Inicializando os botões
+        salvarButton = new JButton("Salvar");
+        salvarButton.setBounds(0, 515, 350, 41);
+        limparButton = new JButton("Limpar");
+        limparButton.setBounds(0, 1, 170, 37);
+        sairButton = new JButton("Sair");
+        sairButton.setBounds(180, 0, 170, 38);
+        getContentPane().setLayout(null);
 
-			}
-		});
-	}
+        // Adicionando os labels e campos no layout
+        JLabel label = new JLabel("Nome:");
+        label.setBounds(0, 5, 350, 41);
+        getContentPane().add(label);
+        getContentPane().add(nomeField);
+        JLabel label_1 = new JLabel("Data de Nascimento (dd/mm/yyyy):");
+        label_1.setBounds(0, 56, 350, 41);
+        getContentPane().add(label_1);
+        getContentPane().add(dataNascimentoField);
+        JLabel label_2 = new JLabel("Gênero:");
+        label_2.setBounds(0, 107, 350, 41);
+        getContentPane().add(label_2);
+        getContentPane().add(generoBox);
+        JLabel label_3 = new JLabel("E-mail:");
+        label_3.setBounds(0, 158, 350, 41);
+        getContentPane().add(label_3);
+        getContentPane().add(emailField);
+        JLabel label_4 = new JLabel("Telefone:");
+        label_4.setBounds(0, 209, 350, 41);
+        getContentPane().add(label_4);
+        getContentPane().add(telefoneField);
+        JLabel label_5 = new JLabel("CPF:");
+        label_5.setBounds(0, 260, 350, 41);
+        getContentPane().add(label_5);
+        getContentPane().add(cpfField);
+        JLabel label_6 = new JLabel("CEP:");
+        label_6.setBounds(0, 311, 350, 41);
+        getContentPane().add(label_6);
+        getContentPane().add(cepField);
+        JLabel label_7 = new JLabel("Senha:");
+        label_7.setBounds(0, 362, 350, 41);
+        getContentPane().add(label_7);
+        getContentPane().add(senhaField);
+        JLabel label_8 = new JLabel("Confirmar Senha:");
+        label_8.setBounds(0, 413, 350, 41);
+        getContentPane().add(label_8);
+        getContentPane().add(confirmarSenhaField);
+        JLabel label_9 = new JLabel("Estado Civil:");
+        label_9.setBounds(0, 464, 350, 41);
+        getContentPane().add(label_9);
+        getContentPane().add(estadoCivilBox);
+        
+        // Botões
+        getContentPane().add(salvarButton);
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setBounds(360, 515, 350, 41);
+        buttonPanel.setLayout(null);
+        buttonPanel.add(limparButton);
+        buttonPanel.add(sairButton);
+        getContentPane().add(buttonPanel);
 
-	public JComboBox<String> getEstadoCivilBox() {
-		return estadoCivilBox;
-	}
+        
+        
 
-	public void setEstadoCivilBox(JComboBox<String> estadoCivilBox) {
-		this.estadoCivilBox = estadoCivilBox;
-	}
+        limparButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                int resposta = JOptionPane.showConfirmDialog(CadastroSeguradoView.this, "Tem certeza que deseja limpar?", "Limpar Dados", JOptionPane.YES_NO_OPTION);
+                if (resposta == JOptionPane.YES_OPTION) {
+                    nomeField.setText("");
+                    dataNascimentoField.setText("");
+                    generoBox.setSelectedIndex(0);
+                    emailField.setText("");
+                    telefoneField.setText("");
+                    cpfField.setText("");
+                    cepField.setText("");
+                    senhaField.setText("");
+                    confirmarSenhaField.setText("");
+                    estadoCivilBox.setSelectedIndex(0);
+                }
+            }
+        });
 
-	public JTextField getSenhaField() {
-		return senhaField;
-	}
+        sairButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                int resposta = JOptionPane.showConfirmDialog(CadastroSeguradoView.this, "Tem certeza que deseja sair?", "Sair", JOptionPane.YES_NO_OPTION);
+                if (resposta == JOptionPane.YES_OPTION) {
+                    System.exit(0);
+                }
+            }
+        });
+    }
 
-	public void setSenhaField(JTextField senhaField) {
-		this.senhaField = senhaField;
-	}
+    public String getNome() {
+        return nomeField.getText();
+    }
 
-	public JTextField getConfirmarSenhaField() {
-		return confirmarSenhaField;
-	}
+    public String getDataNascimento() {
+        return dataNascimentoField.getText();
+    }
 
-	public void setConfirmarSenhaField(JTextField confirmarSenhaField) {
-		this.confirmarSenhaField = confirmarSenhaField;
-	}
+    public String getGenero() {
+        return (String) generoBox.getSelectedItem();
+    }
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
+    public String getEmail() {
+        return emailField.getText();
+    }
 
-	// Metodos para acessar os campos
-	public String getNome() {
-		return nomeField.getText();
-	}
+    public String getTelefone() {
+        return telefoneField.getText();
+    }
 
-	public String getDataNascimento() {
-		return dataNascimentoField.getText();
-	}
+    public String getCpf() {
+        return cpfField.getText();
+    }
 
-	public String getGenero() {
-		return (String) generoBox.getSelectedItem();
-	}
-	
-	public String getEstadoCivil() {
-		return (String) estadoCivilBox.getSelectedItem();
-	}
+    public String getCep() {
+        return cepField.getText();
+    }
 
-	public String getEmail() {
-		return emailField.getText();
-	}
+    public String getSenha() {
+        return new String(senhaField.getPassword());
+    }
 
-	public String getTelefone() {
-		return telefoneField.getText();
-	}
+    public String getConfirmarSenha() {
+        return new String(confirmarSenhaField.getPassword());
+    }
 
-	public String getCpf() {
-		return cpfField.getText();
-	}
+    public String getEstadoCivil() {
+        return (String) estadoCivilBox.getSelectedItem();
+    }
 
-	public String getCep() {
-		return cepField.getText();
-	}
-	
-	public String getSenha() {
-		return senhaField.getText();
-	}
-	public String getConfirmarSenha() {
-		return confirmarSenhaField.getText();
-	}
+    public JButton getSalvarButton() {
+        return salvarButton;
+    }
 
-	// Metodo para adicionar ActionListener no botao salvar
-	public void addSalvarListener(ActionListener listener) {
-		salvarButton.addActionListener(listener);
-	}
+    public void addSalvarListener(ActionListener listener) {
+        salvarButton.addActionListener(listener);
+    }
 
-	// getters and setters
-
-	public JTextField getNomeField() {
-		return nomeField;
-	}
-
-	public void setNomeField(JTextField nomeField) {
-		this.nomeField = nomeField;
-	}
-
-	public JTextField getDataNascimentoField() {
-		return dataNascimentoField;
-	}
-
-	public void setDataNascimentoField(JTextField dataNascimentoField) {
-		this.dataNascimentoField = dataNascimentoField;
-	}
-
-	public JComboBox<String> getGeneroBox() {
-		return generoBox;
-	}
-
-	public void setGeneroBox(JComboBox<String> generoBox) {
-		this.generoBox = generoBox;
-	}
-
-	public JTextField getEmailField() {
-		return emailField;
-	}
-
-	public void setEmailField(JTextField emailField) {
-		this.emailField = emailField;
-	}
-
-	public JTextField getTelefoneField() {
-		return telefoneField;
-	}
-
-	public void setTelefoneField(JTextField telefoneField) {
-		this.telefoneField = telefoneField;
-	}
-
-	public JTextField getCpfField() {
-		return cpfField;
-	}
-
-	public void setCpfField(JTextField cpfField) {
-		this.cpfField = cpfField;
-	}
-
-	public JTextField getCepField() {
-		return cepField;
-	}
-
-	public void setCepField(JTextField cepField) {
-		this.cepField = cepField;
-	}
-
-	public JButton getSalvarButton() {
-		return salvarButton;
-	}
-
-	public void setSalvarButton(JButton salvarButton) {
-		this.salvarButton = salvarButton;
-	}
-
-	
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                new CadastroSeguradoView().setVisible(true);
+            }
+        });
+    }
 }

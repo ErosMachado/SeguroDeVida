@@ -1,6 +1,7 @@
 package com.sementesdobrasil.controller;
 
 import com.sementesdobrasil.view.CadastroSeguradoView;
+import com.sementesdobrasil.dao.SeguradoDAO;
 import com.sementesdobrasil.model.Segurado;
 import com.sementesdobrasil.service.SeguradoService;
 import javax.swing.*;
@@ -9,6 +10,12 @@ import java.awt.event.*;
 public class CadastroSeguradoController {
 	private CadastroSeguradoView view;
 	private SeguradoService service;
+	
+	public CadastroSeguradoController(CadastroSeguradoView view, SeguradoDAO seguradoDAO) {
+	    this.view = view;
+	    this.service = new SeguradoService(seguradoDAO);
+	    initController();
+	}
 
 	public CadastroSeguradoController(CadastroSeguradoView view, SeguradoService service) {
 		this.view = view;
