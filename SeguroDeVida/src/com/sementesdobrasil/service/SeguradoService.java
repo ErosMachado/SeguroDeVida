@@ -6,7 +6,7 @@ import com.sementesdobrasil.util.DatabaseConnection;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-public class SeguradoService {
+public class SeguradoService {//
 
 	private SeguradoDAO seguradoDAO;
 	private DatabaseConnection databaseConnection;
