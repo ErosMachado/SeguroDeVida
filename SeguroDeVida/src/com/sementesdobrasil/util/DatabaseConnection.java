@@ -17,7 +17,7 @@ public class DatabaseConnection {
 			// Estabelece a conexão usando as credenciais das variáveis de ambiente
 			return DriverManager.getConnection(url, usuario, senha);
 		} catch (SQLException e) {
-}
+		}
 		return null;
-	}}//
-
+	}
+}//

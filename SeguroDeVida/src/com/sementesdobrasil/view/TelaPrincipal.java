@@ -2,8 +2,6 @@ package com.sementesdobrasil.view;
 
 import javax.swing.*;
 
-import com.sementesdobrasil.controller.CadastroSeguradoController;
-import com.sementesdobrasil.service.SeguradoService;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -30,7 +28,7 @@ public class TelaPrincipal extends JFrame {
 		labelTitulo.setForeground(new Color(50, 50, 50));
 		getContentPane().add(labelTitulo);
 
-		// Bot�o de Login
+		
 		JButton btnLogin = new JButton("Login");
 		btnLogin.setBounds(200, 120, 200, 40);
 		btnLogin.setFont(new Font("Arial", Font.PLAIN, 16));
@@ -39,14 +37,16 @@ public class TelaPrincipal extends JFrame {
 		btnLogin.setFocusPainted(false);
 		btnLogin.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 		btnLogin.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				System.out.println("Abrindo tela de login...");
-			}
+		    @Override
+		    public void actionPerformed(ActionEvent e) {
+		        LoginBuilder login = new LoginBuilder();
+		        login.getFrame().setVisible(true); 
+                setVisible(false);
+		    }
 		});
 		getContentPane().add(btnLogin);
 
-		// Bot�o de Cadastro
+
 		JButton btnCadastro = new JButton("Cadastro");
 		btnCadastro.setBounds(200, 180, 200, 40);
 		btnCadastro.setFont(new Font("Arial", Font.PLAIN, 16));
@@ -57,27 +57,23 @@ public class TelaPrincipal extends JFrame {
 		btnCadastro.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				CadastroSeguradoView view = new CadastroSeguradoView();
-                SeguradoService service = new SeguradoService();
-                new CadastroSeguradoController(view, service);
-                view.setVisible(true);
+				CadastroSeguradoView cadastroSegurado = new CadastroSeguradoView();
+                cadastroSegurado.setVisible(true);
                 setVisible(false);
 			}
 		});
 		getContentPane().add(btnCadastro);
 
-		// Bot�o de Simula��o de Cota��o
 		JButton btnSimulacao = new JButton("Simular Cotacao");
 		btnSimulacao.setBounds(200, 240, 200, 40);
 		btnSimulacao.setFont(new Font("Arial", Font.PLAIN, 16));
 		btnSimulacao.setBackground(new Color(255, 193, 7)); // Cor amarela
 		btnSimulacao.setForeground(Color.WHITE); // Cor da fonte
 		btnSimulacao.setFocusPainted(false);
-		btnSimulacao.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10)); // Remove as bordas padr�o
+		btnSimulacao.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10)); 
 		btnSimulacao.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// Redirecionar para a tela de simula��o (ainda vazia)
 				System.out.println("Abrindo tela de simulacao...");
 			}
 		});
