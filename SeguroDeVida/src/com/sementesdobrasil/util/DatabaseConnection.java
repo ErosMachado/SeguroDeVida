@@ -19,5 +19,5 @@ public class DatabaseConnection {
 		} catch (SQLException e) {
 }
 		return null;
-	}}
+	}}//
 
