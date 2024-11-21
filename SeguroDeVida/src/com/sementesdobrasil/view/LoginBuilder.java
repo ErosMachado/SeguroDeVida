@@ -3,6 +3,11 @@ package com.sementesdobrasil.view;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 
 import javax.swing.BorderFactory;
@@ -19,15 +24,13 @@ import com.sementesdobrasil.dao.SeguradoDAO;
 import com.sementesdobrasil.model.Segurado;
 import com.sementesdobrasil.service.SeguradoService;
 
+
 public class LoginBuilder {
 
     private JFrame frame;
     private JTextField emailField;
     private JPasswordField passwordField;
 
-    /**
-     * Launch the application.
-     */
     public static void main(String[] args) {
         EventQueue.invokeLater(() -> {
             try {
@@ -39,20 +42,14 @@ public class LoginBuilder {
         });
     }
 
-    /**
-     * Create the application.
-     */
     public LoginBuilder() {
         initialize();
     }
-    
+
     public JFrame getFrame() {
         return frame;
     }
 
-    /**
-     * Initialize the contents of the frame.
-     */
     private void initialize() {
         frame = new JFrame();
         frame.setBounds(100, 100, 600, 400);
@@ -62,7 +59,7 @@ public class LoginBuilder {
         // Cor de fundo
         frame.getContentPane().setBackground(new Color(245, 245, 245));
 
-        // Título da tela
+        // Título
         JLabel titleLabel = new JLabel("Bem-vindo!");
         titleLabel.setFont(new Font("Arial", Font.BOLD, 28));
         titleLabel.setForeground(new Color(60, 60, 60));
@@ -104,27 +101,14 @@ public class LoginBuilder {
         passwordField.setBorder(BorderFactory.createLineBorder(new Color(200, 200, 200)));
         frame.getContentPane().add(passwordField);
 
-        // Botão de login
-        JButton loginButton = new JButton("Entrar");
-        loginButton.setFont(new Font("Arial", Font.BOLD, 14));
+        // Botões arredondados
+        JButton loginButton = criarBotaoComHover("Entrar", new Color(0, 123, 255), Color.WHITE);
         loginButton.setBounds(110, 270, 180, 40);
-        loginButton.setBackground(new Color(0, 123, 255));
-        loginButton.setForeground(Color.WHITE);
-        loginButton.setFocusPainted(false);
-        loginButton.setBorder(BorderFactory.createEmptyBorder());
-        frame.getContentPane().add(loginButton);
 
-        // Botão de cadastro
-        JButton registerButton = new JButton("Criar Cadastro");
-        registerButton.setFont(new Font("Arial", Font.BOLD, 14));
+        JButton registerButton = criarBotaoComHover("Criar Cadastro", new Color(40, 167, 69), Color.WHITE);
         registerButton.setBounds(310, 270, 180, 40);
-        registerButton.setBackground(new Color(40, 167, 69));
-        registerButton.setForeground(Color.WHITE);
-        registerButton.setFocusPainted(false);
-        registerButton.setBorder(BorderFactory.createEmptyBorder());
-        frame.getContentPane().add(registerButton);
 
-        // Ações dos botões
+        // Adicionar ações aos botões
         loginButton.addActionListener(e -> {
             String email = emailField.getText().toLowerCase();
             char[] passwordChars = passwordField.getPassword();
@@ -153,7 +137,6 @@ public class LoginBuilder {
             }
         });
 
-
         registerButton.addActionListener(e -> {
             JOptionPane.showMessageDialog(frame, "Tela de cadastro vai ser aberta...");
             CadastroSeguradoView view = new CadastroSeguradoView();
@@ -162,11 +145,59 @@ public class LoginBuilder {
             view.setVisible(true);
             frame.dispose();
         });
-        
-        
-        
 
+        // Adicionar os botões à tela
+        frame.getContentPane().add(loginButton);
+        frame.getContentPane().add(registerButton);
     }
 
+    private JButton criarBotaoComHover(String texto, Color corFundo, Color corTexto) {
+        JButton botao = new JButton(texto) {
+            /**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
 
+			@Override
+            protected void paintComponent(Graphics g) {
+                Graphics2D g2d = (Graphics2D) g;
+                g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+                // Cor de fundo
+                g2d.setColor(corFundo);
+                g2d.fillRoundRect(0, 0, getWidth(), getHeight(), 30, 30);
+
+                // Cor da borda
+                g2d.setColor(corTexto);
+                g2d.drawRoundRect(0, 0, getWidth() - 1, getHeight() - 1, 30, 30);
+
+                super.paintComponent(g);
+            }
+        };
+
+        botao.setFont(new Font("Arial", Font.BOLD, 14));
+        botao.setForeground(corTexto);
+        botao.setFocusPainted(false);
+        botao.setContentAreaFilled(false);
+        botao.setBorder(BorderFactory.createEmptyBorder());
+
+        // Adicionar MouseListener para o efeito de crescimento
+        botao.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                // Aumenta o tamanho do botão quando o mouse passa sobre ele
+                botao.setBounds(botao.getX() - 5, botao.getY() - 5, botao.getWidth() + 10, botao.getHeight() + 10);
+                botao.repaint();
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                // Restaura o tamanho original do botão quando o mouse sai
+                botao.setBounds(botao.getX() + 5, botao.getY() + 5, botao.getWidth() - 10, botao.getHeight() - 10);
+                botao.repaint();
+            }
+        });
+
+        return botao;
+    }
 }
