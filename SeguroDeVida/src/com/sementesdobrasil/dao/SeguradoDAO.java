@@ -31,7 +31,6 @@ public class SeguradoDAO {
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setString(1, email);
             stmt.setString(2, senha);
-
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
                     return rs.getInt(1) > 0; // Retorna true se existir o registro

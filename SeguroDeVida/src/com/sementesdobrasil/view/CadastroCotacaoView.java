@@ -1,32 +1,15 @@
 package com.sementesdobrasil.view;
 
-import java.awt.Color;
-import java.awt.EventQueue;
-import java.awt.Font;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFormattedTextField;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.ImageIcon;
-import javax.swing.JDesktopPane;
-import javax.swing.SwingConstants;
-import javax.swing.border.BevelBorder;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class CadastroCotacaoView extends JFrame {
 
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
-    private JLabel lblNomeSistema;
-    private JTextField textFieldNome;
 
-    /**
-     * Launch the application.
-     */
     public static void main(String[] args) {
         EventQueue.invokeLater(() -> {
             try {
@@ -38,125 +21,186 @@ public class CadastroCotacaoView extends JFrame {
         });
     }
 
-    /**
-     * Create the frame.
-     */
     public CadastroCotacaoView() {
-        // Define as cores da paleta
-        Color backgroundColor = new Color(245, 245, 245); // Cor de fundo (suave)
-        Color primaryColor = new Color(34, 123, 180);     // Cor principal (azul)
-        Color secondaryColor = new Color(90, 180, 90);    // Cor secundária (verde)
-        Color textColor = new Color(33, 33, 33);          // Cor do texto
-        Color buttonTextColor = Color.WHITE;              // Texto dos botões
-
+        // Configuração da janela principal
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 565, 356);
+        setBounds(0, 0, 800, 700); // Aumentado para dar mais espaço ao novo campo
+        setLocationRelativeTo(null); // Centralizar a janela
 
-        // Painel principal com imagem de fundo
-        contentPane = new ImagePanel("SeguroDeVida/src/Imagens/LogoTokio.png"); // Caminho da imagem
-        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-        contentPane.setBackground(new Color(255, 255, 255)); // Fundo do painel (se necessário)
-        setContentPane(contentPane);
+        // Painel principal
+        contentPane = new JPanel();
         contentPane.setLayout(null);
+        contentPane.setBackground(new Color(255, 255, 255)); // Verde claro
+        setContentPane(contentPane);
 
-        // Título do sistema
-        lblNomeSistema = new JLabel("Cotação do Seguro de Vida");
-        lblNomeSistema.setBounds(100, 9, 365, 24);
-        lblNomeSistema.setFont(new Font("Arial", Font.BOLD, 20));
-        lblNomeSistema.setForeground(new Color(0, 100, 0)); // Cor do texto principal
-        contentPane.add(lblNomeSistema);
+        // Cabeçalho
+        JLabel titulo = new JLabel("Cotação de Seguro de Vida");
+        titulo.setFont(new Font("Roboto", Font.BOLD, 28)); // Título maior
+        titulo.setBounds(200, 20, 400, 40);
+        titulo.setHorizontalAlignment(SwingConstants.CENTER);
+        titulo.setForeground(new Color(34, 85, 34)); // Verde escuro
+        contentPane.add(titulo);
 
-        // Nome
-        JLabel lblNome = new JLabel("Nome:");
-        lblNome.setBounds(20, 47, 46, 14);
-        lblNome.setFont(new Font("Arial", Font.BOLD, 12));
-        lblNome.setForeground(textColor); // Cor do texto
-        contentPane.add(lblNome);
+        // Painel de Cadastro
+        JPanel cadastroPanel = new JPanel();
+        cadastroPanel.setBounds(50, 80, 700, 370); // Aumentado o tamanho para o novo campo
+        cadastroPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(new Color(34, 85, 34)), "Dados do Cliente"));
+        cadastroPanel.setLayout(null);
+        cadastroPanel.setBackground(new Color(245, 255, 245)); // Fundo branco-esverdeado
+        contentPane.add(cadastroPanel);
 
-        textFieldNome = new JTextField();
-        textFieldNome.setBackground(new Color(245, 245, 245));
-        textFieldNome.setBounds(76, 44, 224, 20);
-        contentPane.add(textFieldNome);
-        textFieldNome.setColumns(10);
+        JLabel nomeLabel = new JLabel("Nome:");
+        nomeLabel.setFont(new Font("Roboto", Font.PLAIN, 16));
+        nomeLabel.setBounds(50, 30, 100, 20);
+        cadastroPanel.add(nomeLabel);
 
-        // Data de Nascimento
-        JLabel lblDataNascimento = new JLabel("Data de Nascimento:");
-        lblDataNascimento.setBounds(305, 47, 124, 14);
-        lblDataNascimento.setFont(new Font("Arial", Font.BOLD, 12));
-        lblDataNascimento.setForeground(textColor);
-        contentPane.add(lblDataNascimento);
+        JTextField nomeField = new JTextField();
+        nomeField.setFont(new Font("Roboto", Font.PLAIN, 14));
+        nomeField.setBounds(150, 30, 400, 30);
+        cadastroPanel.add(nomeField);
 
-        JFormattedTextField formattedTextFieldDataNascimento = new JFormattedTextField();
-        formattedTextFieldDataNascimento.setBackground(new Color(247, 247, 247));
-        formattedTextFieldDataNascimento.setBounds(434, 44, 105, 20);
-        contentPane.add(formattedTextFieldDataNascimento);
+        JLabel idadeLabel = new JLabel("Idade:");
+        idadeLabel.setFont(new Font("Roboto", Font.PLAIN, 16));
+        idadeLabel.setBounds(50, 80, 100, 20);
+        cadastroPanel.add(idadeLabel);
 
-        // Profissão
-        JLabel lblProfissao = new JLabel("Profissão:");
-        lblProfissao.setBounds(10, 88, 67, 14);
-        lblProfissao.setFont(new Font("Arial", Font.BOLD, 12));
-        lblProfissao.setForeground(textColor);
-        contentPane.add(lblProfissao);
+        JTextField idadeField = new JTextField();
+        idadeField.setFont(new Font("Roboto", Font.PLAIN, 14));
+        idadeField.setBounds(150, 80, 265, 30);
+        cadastroPanel.add(idadeField);
 
-        JComboBox<String> comboBoxProfissao = new JComboBox<>();
-        comboBoxProfissao.setBounds(76, 84, 224, 22);
-        contentPane.add(comboBoxProfissao);
+        JLabel generoLabel = new JLabel("Gênero:");
+        generoLabel.setFont(new Font("Roboto", Font.PLAIN, 16));
+        generoLabel.setBounds(50, 130, 100, 20);
+        cadastroPanel.add(generoLabel);
 
-        // Salário
-        JLabel lblSalario = new JLabel("Salário:");
-        lblSalario.setBounds(305, 88, 46, 14);
-        lblSalario.setFont(new Font("Arial", Font.BOLD, 12));
-        lblSalario.setForeground(textColor);
-        contentPane.add(lblSalario);
+        String[] generos = {"*Preenchimento Obrigatório*", "Feminino", "Masculino", "Outro"};
+        JComboBox<String> generoCombo = new JComboBox<>(generos);
+        generoCombo.setFont(new Font("Roboto", Font.PLAIN, 14));
+        generoCombo.setBounds(150, 130, 265, 30);
+        cadastroPanel.add(generoCombo);
 
-        JComboBox<String> comboBoxSalario = new JComboBox<>();
-        comboBoxSalario.setBounds(353, 84, 186, 22);
-        contentPane.add(comboBoxSalario);
+        JLabel emailLabel = new JLabel("E-mail:");
+        emailLabel.setFont(new Font("Roboto", Font.PLAIN, 16));
+        emailLabel.setBounds(50, 180, 100, 20);
+        cadastroPanel.add(emailLabel);
 
-        // Gênero
-        JLabel lblGenero = new JLabel("Gênero:");
-        lblGenero.setBounds(20, 127, 46, 14);
-        lblGenero.setFont(new Font("Arial", Font.BOLD, 12));
-        lblGenero.setForeground(textColor);
-        contentPane.add(lblGenero);
+        JTextField emailField = new JTextField();
+        emailField.setFont(new Font("Roboto", Font.PLAIN, 14));
+        emailField.setBounds(150, 180, 265, 30);
+        cadastroPanel.add(emailField);
 
-        JComboBox<String> comboBoxGenero = new JComboBox<>();
-        comboBoxGenero.setBounds(76, 123, 224, 22);
-        contentPane.add(comboBoxGenero);
+        JLabel rendaLabel = new JLabel("Faixa Salarial:");
+        rendaLabel.setFont(new Font("Roboto", Font.PLAIN, 16));
+        rendaLabel.setBounds(50, 230, 150, 20);
+        cadastroPanel.add(rendaLabel);
 
-        // Saúde
-        JLabel lblSaude = new JLabel("Saúde:");
-        lblSaude.setBounds(305, 127, 46, 14);
-        lblSaude.setFont(new Font("Arial", Font.BOLD, 12));
-        lblSaude.setForeground(textColor);
-        contentPane.add(lblSaude);
+        String[] faixasSalarial = {"*Preenchimento Obrigatório*","1040 - 2050", "2051 - 3050", "3051 - 4050", "4051 - 5050", "Acima de 5050"};
+        JComboBox<String> rendaCombo = new JComboBox<>(faixasSalarial);
+        rendaCombo.setFont(new Font("Roboto", Font.PLAIN, 14));
+        rendaCombo.setBounds(150, 230, 265, 30);
+        cadastroPanel.add(rendaCombo);
 
-        JComboBox<String> comboBoxSaude = new JComboBox<>();
-        comboBoxSaude.setBounds(353, 123, 186, 22);
-        contentPane.add(comboBoxSaude);
+        // Novo campo Profissão
+        JLabel profissaoLabel = new JLabel("Profissão:");
+        profissaoLabel.setFont(new Font("Roboto", Font.PLAIN, 16));
+        profissaoLabel.setBounds(50, 280, 100, 20);
+        cadastroPanel.add(profissaoLabel);
 
-        // Botões
-        JButton btnVoltar = new JButton("Voltar");
-        btnVoltar.setBounds(20, 187, 105, 30);
-        btnVoltar.setBackground(primaryColor); // Fundo azul
-        btnVoltar.setForeground(new Color(103, 103, 103)); // Texto branco
-        contentPane.add(btnVoltar);
+        String[] profissoes = {
+        	"*Preenchimento Obrigatório*",
+            "Não exerço nenhuma destas atividades profissionais",
+            "APOSENTADO (POR IVALIDEZ OU DOENÇA)",
+            "CONSTRUÇÃO CIVIL E MINERAÇÃO - Supervisor ou coordenador extração mineral ou da construção civil",
+            "CONSTRUÇÃO CIVIL E MINERAÇÃO - Técnico em extração mineral ou geologia",
+            "CONSTRUÇÃO CIVIL E MINERAÇÃO - Técnico em mineralogia ou geologia",
+            "CONSTRUÇÃO CIVIL E MINERAÇÃO - Auxiliar ou técnico na extração mineral",
+            "CONSTRUÇÃO CIVIL E MINERAÇÃO - Garimpeiro",
+            "CONSTRUÇÃO CIVIL E MINERAÇÃO - Pintor sem equipamento de segurança",
+            "CONSTRUÇÃO CIVIL E MINERAÇÃO - Plataformista de petróleo",
+            "SEGURANÇA PÚBLICA E FORÇAS ARMADAS - Bombeiros: comandante, coronel, tenente, major, capitão, subtenente",
+            "SEGURANÇA PÚBLICA E FORÇAS ARMADAS - Sargento, soldado, cabo e agente dos bombeiros",
+            "SEGURANÇA PÚBLICA E FORÇAS ARMADAS - Sargento, soldado, cabo e agente de polícia militar",
+            "SEGURANÇA PÚBLICA E FORÇAS ARMADAS - Policial militar: comandante, coronel, tenente, major, capitão, subtenente",
+            "SEGURANÇA PÚBLICA E FORÇAS ARMADAS - Policial civil - agente de segurança penitenciária",
+            "SEGURANÇA PÚBLICA E FORÇAS ARMADAS - Polícia Civil, exceto agente penitenciário",
+            "SEGURANÇA PÚBLICA E FORÇAS ARMADAS - Policial Federal, ferroviário e rodoviário",
+            "SEGURANÇA PÚBLICA E FORÇAS ARMADAS - Policial legislativo e do Senado Federal",
+            "SEGURANÇA PÚBLICA E FORÇAS ARMADAS - Cabo, marinheiro e taifeiro das Forças Armadas",
+            "SEGURANÇA PÚBLICA E FORÇAS ARMADAS - Oficiais, suboficiais e sargentos do Exército, Marinha e Aeronáutica",
+            "SEGURANÇA PÚBLICA E FORÇAS ARMADAS - Monitor ou instrutor de menores (Fundação Casa e similares)",
+            "TRANSPORTE E LOGÍSTICA - Motoboy",
+            "TRANSPORTE E LOGÍSTICA - Motorista de caminhão",
+            "TRANSPORTE E LOGÍSTICA - Mototaxista",
+            "TRANSPORTE E LOGÍSTICA - Piloto de avião",
+            "TRANSPORTE E LOGÍSTICA - Piloto de helicóptero",
+            "TRANSPORTE E LOGÍSTICA - Instrutor de voo",
+            "TRABALHO DE RISCO OU PERIGOSO - Mergulhador",
+            "TRABALHO DE RISCO OU PERIGOSO - Pirotécnico",
+            "TRABALHO DE RISCO OU PERIGOSO - Limpador de vidros (especialmente em altura)",
+            "TRABALHO DE RISCO OU PERIGOSO - Vigilante ou segurança (especialmente em áreas de risco)",
+            "TRABALHO EM ÁREAS DE RISCO OU PERIGO - Boiadeiro (trabalhador rural em condições de risco)",
+            "TRABALHO EM ÁREAS DE RISCO OU PERIGO - Guarda Civil Municipal (especialmente se atuando em áreas de risco elevado)",
+            "ESPORTES E ATIVIDADES DE ALTO RISCO - Piloto de competição automobilística"
+        };
+        JComboBox<String> profissaoCombo = new JComboBox<>(profissoes);
+        profissaoCombo.setFont(new Font("Roboto", Font.PLAIN, 14));
+        profissaoCombo.setBounds(150, 280, 400, 30);
+        cadastroPanel.add(profissaoCombo);
 
-        JButton btnCotar = new JButton("Cotar");
-        btnCotar.setBounds(209, 187, 105, 30);
-        btnCotar.setBackground(secondaryColor); // Fundo verde
-        btnCotar.setForeground(new Color(103, 103, 103));
-        contentPane.add(btnCotar);
+        // Botões (sem alterações)
+        JPanel botoesPanel = new JPanel();
+        botoesPanel.setBounds(50, 470, 700, 50);
+        botoesPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
+        botoesPanel.setBackground(new Color(230, 250, 230));
+        contentPane.add(botoesPanel);
 
-        JButton btnLimpar = new JButton("Limpar");
-        btnLimpar.setBounds(392, 187, 105, 30);
-        btnLimpar.setBackground(primaryColor);
-        btnLimpar.setForeground(new Color(103, 103, 103));
-        contentPane.add(btnLimpar);
+        JButton salvarButton = new JButton("Cotar");
+        salvarButton.setFont(new Font("Roboto", Font.BOLD, 16));
+        salvarButton.setBackground(new Color(50, 99, 99));
+        salvarButton.setForeground(Color.WHITE);
+        botoesPanel.add(salvarButton);
         
-        JLabel lblNewLabel = new JLabel("");
-        lblNewLabel.setIcon(new ImageIcon("D:\\dev_cristine\\Git\\SeguroDeVida\\SeguroDeVida\\src\\Imagens\\FundoTokio.png"));
-        lblNewLabel.setBounds(20, 64, 497, 396);
-        contentPane.add(lblNewLabel);
+        JButton LimparButton = new JButton("Limpar");
+        LimparButton.setForeground(Color.WHITE);
+        LimparButton.setFont(new Font("Dialog", Font.BOLD, 16));
+        LimparButton.setBackground(new Color(50, 99, 99));
+        botoesPanel.add(LimparButton);
+
+        JButton VoltarButton = new JButton("Voltar");
+        VoltarButton.setFont(new Font("Roboto", Font.BOLD, 16));
+        VoltarButton.setBackground(new Color(50, 99, 99));
+        VoltarButton.setForeground(Color.WHITE);
+        botoesPanel.add(VoltarButton);
+        
+        JLabel lblLogoTokio = new JLabel("");
+        lblLogoTokio.setIcon(new ImageIcon(CadastroCotacaoView.class.getResource("/Imagens/FundoTokio.png")));
+        lblLogoTokio.setBounds(145, 470, 500, 183);
+        contentPane.add(lblLogoTokio);
+        
+        VoltarButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                int resposta = JOptionPane.showConfirmDialog(CadastroCotacaoView.this, "Tem certeza que deseja sair? Sua cotação será perdida após isso...", "Sair", JOptionPane.YES_NO_OPTION);
+                if (resposta == JOptionPane.YES_OPTION) {
+                	TelaPrincipal telaPrincipal  = new TelaPrincipal();
+	                telaPrincipal.setVisible(true);
+	                setVisible(false);
+                }
+            }
+        });
+        
+        LimparButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                int resposta = JOptionPane.showConfirmDialog(CadastroCotacaoView.this, "Tem certeza que deseja limpar?", "Limpar Dados", JOptionPane.YES_NO_OPTION);
+                if (resposta == JOptionPane.YES_OPTION) {
+                    nomeField.setText("");
+                    idadeField.setText("");
+                    generoCombo.setSelectedIndex(0);
+                    emailField.setText("");
+                    rendaCombo.setSelectedIndex(0);
+                    profissaoCombo.setSelectedIndex(0);
+                }
+            }
+        });
     }
 }

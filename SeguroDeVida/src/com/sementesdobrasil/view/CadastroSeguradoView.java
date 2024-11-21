@@ -35,13 +35,8 @@ public class CadastroSeguradoView extends JFrame {
         nomeField.setBounds(360, 5, 350, 41);
         dataNascimentoField = new JTextField();
         dataNascimentoField.setBounds(360, 56, 350, 41);
-<<<<<<< HEAD
-        generoBox = new JComboBox<>(new String[] {"", "Masculino", "Feminino", "Prefiro n�o informar", "Outro" });
-        generoBox.setBounds(360, 107, 350, 41);
-=======
-        generoBox = new JComboBox<>(new String[] {"", "Masculino", "Feminino", "Prefiro n�o informar", "Outro" });
+        generoBox = new JComboBox<>(new String[] {"", "Masculino", "Feminino", "Prefiro não informar", "Outro" });
         generoBox.setBounds(360, 108, 350, 41);
->>>>>>> branch 'main' of https://github.com/ErosMachado/SeguroDeVida.git
         emailField = new JTextField();
         emailField.setBounds(360, 208, 350, 41);
         telefoneField = new JTextField();
@@ -54,13 +49,6 @@ public class CadastroSeguradoView extends JFrame {
         senhaField.setBounds(360, 412, 350, 41);
         confirmarSenhaField = new JPasswordField();
         confirmarSenhaField.setBounds(360, 463, 350, 41);
-<<<<<<< HEAD
-
-        // Inicializando os bot�es
-        salvarButton = new JButton("Salvar");
-        salvarButton.setBounds(198, 515, 150, 45);
-=======
->>>>>>> branch 'main' of https://github.com/ErosMachado/SeguroDeVida.git
         limparButton = new JButton("Limpar");
         limparButton.setBounds(0, 1, 150, 45);
         sairButton = new JButton("Sair");
@@ -76,9 +64,9 @@ public class CadastroSeguradoView extends JFrame {
         label_1.setBounds(0, 56, 350, 41);
         getContentPane().add(label_1);
         getContentPane().add(dataNascimentoField);
-        JLabel lblGnero = new JLabel("Gênero:");
-        lblGnero.setBounds(0, 107, 350, 41);
-        getContentPane().add(lblGnero);
+        JLabel label_2 = new JLabel("Gênero:");
+        label_2.setBounds(0, 107, 350, 41);
+        getContentPane().add(label_2);
         getContentPane().add(generoBox);
         JLabel label_3 = new JLabel("E-mail:");
         label_3.setBounds(0, 208, 350, 41);
@@ -104,27 +92,21 @@ public class CadastroSeguradoView extends JFrame {
         label_8.setBounds(0, 463, 350, 41);
         getContentPane().add(label_8);
         getContentPane().add(confirmarSenhaField);
-<<<<<<< HEAD
-        
-        // Bot�es
-        getContentPane().add(salvarButton);
-=======
->>>>>>> branch 'main' of https://github.com/ErosMachado/SeguroDeVida.git
         JPanel buttonPanel = new JPanel();
         buttonPanel.setBounds(184, 515, 350, 66);
         buttonPanel.setLayout(null);
         buttonPanel.add(limparButton);
         buttonPanel.add(sairButton);
         getContentPane().add(buttonPanel);
-        
+
         label_9 = new JLabel("Estado Civil:");
         label_9.setBounds(0, 156, 350, 41);
         getContentPane().add(label_9);
-        
+
         estadoCivilBox =  new JComboBox<>(new String[] {"", "Solteiro", "Casado", "Viuvo", "Outro" });
         estadoCivilBox.setBounds(360, 156, 350, 41);
         getContentPane().add(estadoCivilBox);
-        
+
         JButton voltarBtn = new JButton("Voltar");
         voltarBtn.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
@@ -137,7 +119,7 @@ public class CadastroSeguradoView extends JFrame {
         });
         voltarBtn.setBounds(10, 515, 150, 45);
         getContentPane().add(voltarBtn);
-        
+
         salvarButton = new JButton("Salvar");
         
         salvarButton.addActionListener(new ActionListener() {
@@ -148,8 +130,8 @@ public class CadastroSeguradoView extends JFrame {
         salvarButton.setBounds(550, 515, 150, 45);
         getContentPane().add(salvarButton);
 
-        
-        
+
+
 
         limparButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {

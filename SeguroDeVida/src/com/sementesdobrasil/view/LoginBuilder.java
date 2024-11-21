@@ -49,7 +49,7 @@ public class LoginBuilder {
         // Cor de fundo
         frame.getContentPane().setBackground(new Color(245, 245, 245));
 
-        // Título da tela
+        // TÃ­tulo da tela
         JLabel titleLabel = new JLabel("Bem-vindo!");
         titleLabel.setFont(new Font("Arial", Font.BOLD, 28));
         titleLabel.setForeground(new Color(60, 60, 60));
@@ -57,8 +57,8 @@ public class LoginBuilder {
         titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
         frame.getContentPane().add(titleLabel);
 
-        // Subtítulo
-        JLabel subtitleLabel = new JLabel("Faça login para continuar");
+        // SubtÃ­tulo
+        JLabel subtitleLabel = new JLabel("FaÃ§a login para continuar");
         subtitleLabel.setFont(new Font("Arial", Font.PLAIN, 16));
         subtitleLabel.setForeground(new Color(100, 100, 100));
         subtitleLabel.setBounds(180, 70, 240, 25);
@@ -91,7 +91,7 @@ public class LoginBuilder {
         passwordField.setBorder(BorderFactory.createLineBorder(new Color(200, 200, 200)));
         frame.getContentPane().add(passwordField);
 
-        // Botão de login
+        // BotÃ£o de login
         JButton loginButton = new JButton("Entrar");
         loginButton.setFont(new Font("Arial", Font.BOLD, 14));
         loginButton.setBounds(110, 270, 180, 40);
@@ -101,7 +101,7 @@ public class LoginBuilder {
         loginButton.setBorder(BorderFactory.createEmptyBorder());
         frame.getContentPane().add(loginButton);
 
-        // Botão de cadastro
+        // BotÃ£o de cadastro
         JButton registerButton = new JButton("Criar Cadastro");
         registerButton.setFont(new Font("Arial", Font.BOLD, 14));
         registerButton.setBounds(310, 270, 180, 40);
@@ -111,7 +111,7 @@ public class LoginBuilder {
         registerButton.setBorder(BorderFactory.createEmptyBorder());
         frame.getContentPane().add(registerButton);
 
-        // Ações dos botões
+        // AÃ§Ãµes dos botÃµes
         loginButton.addActionListener(e -> {
             String email = emailField.getText();
             char[] password = passwordField.getPassword();
