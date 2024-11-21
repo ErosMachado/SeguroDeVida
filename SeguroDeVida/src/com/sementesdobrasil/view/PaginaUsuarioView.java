@@ -74,7 +74,11 @@ public class PaginaUsuarioView extends JFrame {
 	    SeguroButton.addActionListener(new ActionListener() {    
 	        @Override
 	        public void actionPerformed(ActionEvent e) {
-	            JOptionPane.showMessageDialog(PaginaUsuarioView.this, "Abrir tela para verificar seguro.");
+	        	
+	        	CadastroCotacaoView cadastroCotacao = new CadastroCotacaoView();
+				cadastroCotacao.setVisible(true);
+				setVisible(false);
+	        	
 	        }
 	    });
 
