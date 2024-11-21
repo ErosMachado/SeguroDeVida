@@ -44,13 +44,13 @@ public class PaginaUsuarioView extends JFrame {
 	    JPanel buttonPanel = new JPanel();
 	    buttonPanel.setLayout(new GridLayout(1, 3, 10, 10));
 
-	    JButton realizarSeguroButton = new JButton("Realizar Seguro");
-	    JButton verificarSeguroButton = new JButton("Verificar Seguro");
+	    JButton realizarSeguroButton = new JButton("Voltar ao início");
+	    JButton SeguroButton = new JButton("Contratar Seguro");
 	    JButton adicionarDependenteButton = new JButton("Adicionar Dependentes");
 
 	    // Adicionando os botões ao painel
 	    buttonPanel.add(realizarSeguroButton);
-	    buttonPanel.add(verificarSeguroButton);
+	    buttonPanel.add(SeguroButton);
 	    buttonPanel.add(adicionarDependenteButton);
 
 	    // Adicionando painéis à tela principal
@@ -61,11 +61,17 @@ public class PaginaUsuarioView extends JFrame {
 	    realizarSeguroButton.addActionListener(new ActionListener() {
 	        @Override
 	        public void actionPerformed(ActionEvent e) {
-	            JOptionPane.showMessageDialog(PaginaUsuarioView.this, "Abrir tela para realizar seguro.");
+	            int resposta = JOptionPane.showConfirmDialog(PaginaUsuarioView.this,
+						"Tem certeza que deseja voltar ao início?", "Voltar ao Início", JOptionPane.YES_NO_OPTION);
+				if (resposta == JOptionPane.YES_OPTION) {
+					TelaPrincipal main = new TelaPrincipal();
+					main.setVisible(true);
+					setVisible(false);
+				}
 	        }
 	    });
 
-	    verificarSeguroButton.addActionListener(new ActionListener() {    
+	    SeguroButton.addActionListener(new ActionListener() {    
 	        @Override
 	        public void actionPerformed(ActionEvent e) {
 	            JOptionPane.showMessageDialog(PaginaUsuarioView.this, "Abrir tela para verificar seguro.");
