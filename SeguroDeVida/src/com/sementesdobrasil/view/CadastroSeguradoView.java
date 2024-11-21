@@ -2,7 +2,11 @@ package com.sementesdobrasil.view;
 
 import javax.swing.*;
 
+import com.sementesdobrasil.dao.SeguradoDAO;
+import com.sementesdobrasil.model.Segurado;
+
 import java.awt.event.*;
+import java.sql.SQLException;
 
 public class CadastroSeguradoView extends JFrame {
 	/**
@@ -118,10 +122,32 @@ public class CadastroSeguradoView extends JFrame {
 		voltarBtn.setBounds(10, 515, 150, 45);
 		getContentPane().add(voltarBtn);
 
+		// Definindo o botão de salvar
 		salvarButton = new JButton("Salvar");
 
 		salvarButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				String nome = nomeField.getText();
+				String dataNascimento = dataNascimentoField.getText();
+				String genero = generoBox.getSelectedItem().toString();
+				String email = emailField.getText();
+				String telefone = telefoneField.getText();
+				String cpf = cpfField.getText();
+				String cep = cepField.getText();
+				String senha = new String(senhaField.getPassword());
+				String estadoCivil = estadoCivilBox.getSelectedItem().toString();
+
+				Segurado segurado = new Segurado(nome, dataNascimento, genero, email, telefone, cpf, cep, senha,
+						estadoCivil);
+
+				SeguradoDAO seguradoDAO = new SeguradoDAO();
+
+				try {
+					seguradoDAO.save(segurado);
+					JOptionPane.showMessageDialog(null, "Segurado salvo com sucesso!");
+				} catch (SQLException ex) {
+					JOptionPane.showMessageDialog(null, "Erro ao salvar segurado: " + ex.getMessage());
+				}
 			}
 		});
 
