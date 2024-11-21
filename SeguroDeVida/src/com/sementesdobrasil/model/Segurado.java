@@ -1,7 +1,8 @@
 package com.sementesdobrasil.model;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+
+import com.sementesdobrasil.util.DataUtils;
 
 public class Segurado {
 	private String nome;
@@ -20,8 +21,7 @@ public class Segurado {
 			String cep, String senha, String estadoCivil) {
 		super();
 		this.nome = nome;
-		DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-		this.dataNascimento = LocalDate.parse(dataNascimento, formato);
+        this.dataNascimento = DataUtils.converterDataNascimento(dataNascimento);
 		this.genero = genero;
 		this.email = email;
 		this.telefone = telefone;
@@ -46,10 +46,15 @@ public class Segurado {
 		DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		this.dataNascimento = LocalDate.parse(dataNascimento, formato);
 		this.genero = genero;
-		this.email = email;
+		this.email = email.toLowerCase();
 		this.telefone = telefone;
 		this.cpf = cpf;
 		this.cep = cep;
+	}
+
+	
+	//criei para o getSeguradoByEmailSenha do SeguradoDAO
+	public Segurado() {
 	}
 
 	// Getters e Setters
@@ -82,7 +87,7 @@ public class Segurado {
 	}
 
 	public void setEmail(String email) {
-		this.email = email;
+		this.email = email.toLowerCase();
 	}
 
 	public String getTelefone() {

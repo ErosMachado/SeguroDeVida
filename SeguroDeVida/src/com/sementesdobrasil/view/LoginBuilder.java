@@ -1,10 +1,22 @@
 package com.sementesdobrasil.view;
 
-import java.awt.*;
-import javax.swing.*;
+import java.awt.Color;
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.sql.SQLException;
+
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 import com.sementesdobrasil.controller.CadastroSeguradoController;
 import com.sementesdobrasil.dao.SeguradoDAO;
+import com.sementesdobrasil.model.Segurado;
 import com.sementesdobrasil.service.SeguradoService;
 
 public class LoginBuilder {
@@ -122,11 +134,19 @@ public class LoginBuilder {
                 JOptionPane.showMessageDialog(frame, "Preencha todos os campos.");
             } else {
                 SeguradoDAO seguradoDAO = new SeguradoDAO();
-                if (seguradoDAO.validarCredenciais(email, senha)) {
+                Segurado segurado = null;
+
+                try {
+                    segurado = seguradoDAO.getSeguradoByEmailSenha(email, senha);
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+
+                if (segurado != null) {
                     JOptionPane.showMessageDialog(frame, "Login realizado com sucesso!");
-                    PaginaUsuarioView perfil = new PaginaUsuarioView();
+                    PaginaUsuarioView perfil = new PaginaUsuarioView(segurado);  // Passando o objeto segurado
                     perfil.setVisible(true);
-                    frame.dispose();
+                    frame.dispose();  // Fecha a tela de login
                 } else {
                     JOptionPane.showMessageDialog(frame, "E-mail ou senha inválidos.");
                 }

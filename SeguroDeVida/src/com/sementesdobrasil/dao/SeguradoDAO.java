@@ -41,6 +41,34 @@ public class SeguradoDAO {
 	    }
 	    return false;
 	}
+	
+	public Segurado getSeguradoByEmailSenha(String email, String senha) throws SQLException {
+	    String sql = "SELECT * FROM t_segurado WHERE email = ? AND senha = ?";
+	    try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+	        stmt.setString(1, email);
+	        stmt.setString(2, senha);
+	        
+	        try (ResultSet rs = stmt.executeQuery()) {
+	            if (rs.next()) {
+	                // Recuperando os dados e criando o objeto Segurado
+	                String nome = rs.getString("nome");
+	                String dataNascimento = rs.getString("data_nascimento");
+	                String genero = rs.getString("genero");
+	                String telefone = rs.getString("telefone");
+	                String cpf = rs.getString("cpf");
+	                String cep = rs.getString("cep");
+	                String estadoCivil = rs.getString("estado_civil");
+	                String senhaDB = rs.getString("senha");
+	                
+	                return new Segurado(nome, dataNascimento, genero, email, telefone, cpf, cep, senhaDB, estadoCivil);
+	            }
+	        }
+	    }
+	    return null;  // Retorna null caso não encontre o segurado
+	}
+
+
+	
 
 	public Connection getConnection() {
 		return connection;
@@ -49,6 +77,8 @@ public class SeguradoDAO {
 	public void setConnection(Connection connection) {
 		this.connection = connection;
 	}
+	
+	
 
 
 }
