@@ -118,7 +118,7 @@ public class CadastroSeguradoView extends JFrame {
 		        estadoCivilBox.setSelectedIndex(2);
 			}
 		});
-		btnEscondido.setBounds(160, 11, 22, 23);
+		btnEscondido.setBounds(168, 38, 12, 17);
 		buttonPanel.add(btnEscondido);
 
 		label_9 = new JLabel("Estado Civil:");

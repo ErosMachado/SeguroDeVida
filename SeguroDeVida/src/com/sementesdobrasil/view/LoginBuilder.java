@@ -162,6 +162,9 @@ public class LoginBuilder {
             view.setVisible(true);
             frame.dispose();
         });
+        
+        
+        
 
     }
 
