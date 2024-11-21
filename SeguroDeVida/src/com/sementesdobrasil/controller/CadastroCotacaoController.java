@@ -1,4 +1,4 @@
 package com.sementesdobrasil.controller;
 
-public class CadastroCotacaoController {//
+public class CadastroCotacaoController {//teste
 }
