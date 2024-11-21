@@ -105,7 +105,7 @@ public class CadastroSeguradoView extends JFrame {
 		label_9.setBounds(0, 156, 350, 41);
 		getContentPane().add(label_9);
 
-		estadoCivilBox = new JComboBox<>(new String[] { "", "Solteiro", "Casado", "Viuvo", "Outro" });
+		estadoCivilBox = new JComboBox<>(new String[] { "", "Solteiro", "Casado", "Viuvo", "Divorciado", "Outro" });
 		estadoCivilBox.setBounds(360, 156, 350, 41);
 		getContentPane().add(estadoCivilBox);
 

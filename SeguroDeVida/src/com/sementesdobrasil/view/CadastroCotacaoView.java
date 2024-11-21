@@ -34,9 +34,9 @@ public class CadastroCotacaoView extends JFrame {
         setContentPane(contentPane);
 
         // Cabeçalho
-        JLabel titulo = new JLabel("Cotação de Seguro de Vida");
+        JLabel titulo = new JLabel("Simulação de Cotação de Seguro de Vida");
         titulo.setFont(new Font("Roboto", Font.BOLD, 28)); // Título maior
-        titulo.setBounds(200, 20, 400, 40);
+        titulo.setBounds(50, 20, 800, 40);
         titulo.setHorizontalAlignment(SwingConstants.CENTER);
         titulo.setForeground(new Color(34, 85, 34)); // Verde escuro
         contentPane.add(titulo);
