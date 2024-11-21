@@ -1,3 +1,4 @@
+
 package com.sementesdobrasil.view;
 
 import javax.swing.*;
@@ -52,9 +53,10 @@ public class CadastroSeguradoView extends JFrame {
 		confirmarSenhaField = new JPasswordField();
 		confirmarSenhaField.setBounds(360, 463, 350, 41);
 		limparButton = new JButton("Limpar");
-		limparButton.setBounds(0, 1, 150, 45);
+		limparButton.setBounds(0, 0, 150, 45);
+		
 		sairButton = new JButton("Sair");
-		sairButton.setBounds(180, 0, 150, 45);
+		sairButton.setBounds(190, 0, 150, 45);
 		getContentPane().setLayout(null);
 
 		// Adicionando os labels e campos no layout
@@ -100,6 +102,24 @@ public class CadastroSeguradoView extends JFrame {
 		buttonPanel.add(limparButton);
 		buttonPanel.add(sairButton);
 		getContentPane().add(buttonPanel);
+		
+		JButton btnEscondido = new JButton(".");
+		btnEscondido.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				nomeField.setText("João da Silva");
+		        dataNascimentoField.setText("2000-01-01 00:00:00");
+		        generoBox.setSelectedIndex(1);
+		        emailField.setText("joao@email.com");
+		        telefoneField.setText("(11) 98765-4321");
+		        cpfField.setText("123.456.789-00");
+		        cepField.setText("12345-678");
+		        senhaField.setText("Senha123");
+		        confirmarSenhaField.setText("Senha123");
+		        estadoCivilBox.setSelectedIndex(2);
+			}
+		});
+		btnEscondido.setBounds(160, 11, 22, 23);
+		buttonPanel.add(btnEscondido);
 
 		label_9 = new JLabel("Estado Civil:");
 		label_9.setBounds(0, 156, 350, 41);
@@ -231,6 +251,8 @@ public class CadastroSeguradoView extends JFrame {
 	public void addSalvarListener(ActionListener listener) {
 		salvarButton.addActionListener(listener);
 	}
+	
+	
 
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
