@@ -11,16 +11,14 @@ public class DataUtils {
     public static LocalDate converterDataNascimento(String dataNascimento) {
         // Definindo os formatos possíveis para a data
         DateTimeFormatter[] formatos = new DateTimeFormatter[] {
-            DateTimeFormatter.ofPattern("dd/MM/yyyy"),        // Formato com data no padrão dd/MM/yyyy
-            DateTimeFormatter.ofPattern("yyyy-MM-dd"),        // Formato sem hora
+
             DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss") // Formato com hora
         };
 
         for (DateTimeFormatter formato : formatos) {
             try {
                 // Tentamos parsear a data com o formato atual
-                if (formato.toString().equals("dd/MM/yyyy")) {
-                    // Caso seja o formato "dd/MM/yyyy", retornamos LocalDate
+                if (formato.toString().equals("yyyy-MM-dd HH:mm:ss")) {
                     return LocalDate.parse(dataNascimento, formato);
                 } else {
                     // Se for outro formato (com hora), tratamos com LocalDateTime e retornamos LocalDate
@@ -34,6 +32,6 @@ public class DataUtils {
         }
 
         // Se nenhum formato funcionar, retorna null ou lança uma exceção, dependendo do seu tratamento
-        throw new IllegalArgumentException("Formato de data inválido: " + dataNascimento);
+        throw new IllegalArgumentException("(D)Formato de data inválido: " + dataNascimento);
     }
 }

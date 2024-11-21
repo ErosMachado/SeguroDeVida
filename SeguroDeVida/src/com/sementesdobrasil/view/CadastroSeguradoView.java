@@ -62,7 +62,7 @@ public class CadastroSeguradoView extends JFrame {
 		label.setBounds(0, 5, 350, 41);
 		getContentPane().add(label);
 		getContentPane().add(nomeField);
-		JLabel label_1 = new JLabel("Data de Nascimento (dd/mm/yyyy):");
+		JLabel label_1 = new JLabel("Data de Nascimento (yyyy-MM-dd HH:mm:ss):");
 		label_1.setBounds(0, 56, 350, 41);
 		getContentPane().add(label_1);
 		getContentPane().add(dataNascimentoField);
