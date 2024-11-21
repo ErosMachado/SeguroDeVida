@@ -126,7 +126,7 @@ public class LoginBuilder {
 
         // Ações dos botões
         loginButton.addActionListener(e -> {
-            String email = emailField.getText();
+            String email = emailField.getText().toLowerCase();
             char[] passwordChars = passwordField.getPassword();
             String senha = new String(passwordChars);
 
