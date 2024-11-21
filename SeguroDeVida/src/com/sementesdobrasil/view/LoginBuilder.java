@@ -4,6 +4,7 @@ import java.awt.*;
 import javax.swing.*;
 
 import com.sementesdobrasil.controller.CadastroSeguradoController;
+import com.sementesdobrasil.dao.SeguradoDAO;
 import com.sementesdobrasil.service.SeguradoService;
 
 public class LoginBuilder {
@@ -114,14 +115,24 @@ public class LoginBuilder {
         // Ações dos botões
         loginButton.addActionListener(e -> {
             String email = emailField.getText();
-            char[] password = passwordField.getPassword();
+            char[] passwordChars = passwordField.getPassword();
+            String senha = new String(passwordChars);
 
-            if (email.isEmpty() || password.length == 0) {
+            if (email.isEmpty() || senha.isEmpty()) {
                 JOptionPane.showMessageDialog(frame, "Preencha todos os campos.");
             } else {
-                JOptionPane.showMessageDialog(frame, "Login realizado com sucesso!");
+                SeguradoDAO seguradoDAO = new SeguradoDAO();
+                if (seguradoDAO.validarCredenciais(email, senha)) {
+                    JOptionPane.showMessageDialog(frame, "Login realizado com sucesso!");
+                    PaginaUsuarioView perfil = new PaginaUsuarioView();
+                    perfil.setVisible(true);
+                    frame.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(frame, "E-mail ou senha inválidos.");
+                }
             }
         });
+
 
         registerButton.addActionListener(e -> {
             JOptionPane.showMessageDialog(frame, "Tela de cadastro vai ser aberta...");
@@ -129,6 +140,10 @@ public class LoginBuilder {
             SeguradoService service = new SeguradoService();
             new CadastroSeguradoController(view, service);
             view.setVisible(true);
+            frame.dispose();
         });
+
     }
+
+
 }

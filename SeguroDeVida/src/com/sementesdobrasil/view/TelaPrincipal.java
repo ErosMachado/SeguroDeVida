@@ -72,7 +72,6 @@ public class TelaPrincipal extends JFrame {
 			btnSimulacao.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					System.out.println("Abrindo tela de simulacao...");
 					CadastroCotacaoView cadastroCotacao  = new CadastroCotacaoView();
 	                cadastroCotacao.setVisible(true);
 	                setVisible(false);
