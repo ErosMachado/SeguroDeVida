@@ -1,56 +1,71 @@
-# Seguro de Vida - Dev Marine
+# Seguro de Vida - Dev Marine 🌊
 
-![logo de Dev Marine](img/LogoDevMarine.jpeg)
+<img src="img/LogoDevMarine.jpeg" alt="Logo de Dev Marine" width="150" style="display: block; margin: auto;">
 
 Bem-vindo ao repositório do **Seguro de Vida**! 🚀 Este projeto é uma aplicação para gerenciar cotações de seguros com diversas funcionalidades.
 
-## Colaboradores do Projeto
+---
 
-![Integrantes/Colaboradores](img/integrantes.png)
+## 👥 Colaboradores do Projeto
 
+<img src="img/integrantes.png" alt="Integrantes/Colaboradores" width="500" style="display: block; margin: auto;">
+
+---
 
 ## 🖥️ Tela Inicial da Aplicação
 
 Aqui está uma prévia da interface principal:
 
-![Tela Inicial](img/telaInicial.jpeg)
+<img src="img/telaInicial.jpeg" alt="Tela Inicial" width="700" style="display: block; margin: auto;">
 
+**Outra visão da interface principal:**
 
-![Tela Principal](img/telaPrincipal.jpeg)
+<img src="img/telaPrincipal.jpeg" alt="Tela Principal" width="700" style="display: block; margin: auto;">
 
+---
 
 ## 📖 Funcionalidades
 
-- 📋 Cadastro de cotações.
-- 🔍 Busca e listagem de seguros.
-- 📊 Detalhamento de ações.
+- 📋 **Cadastro de Cotações**: Registre os dados de seguros de forma prática.
+- 🔍 **Busca e Listagem de Seguros**: Pesquise rapidamente e visualize informações detalhadas.
+- 📊 **Detalhamento de Ações**: Veja relatórios detalhados e históricos.
+
+---
 
 ## 🛠️ Tecnologias Utilizadas
 
-- **Java**
-- **Eclipse IDE**
-- **Oracle Database**
+- ☕ **Java**: Para o backend da aplicação.
+- ✍️ **Eclipse IDE**: Ambiente de desenvolvimento integrado.
+- 🗄️ **Oracle Database**: Gerenciamento e armazenamento de dados.
+
+---
 
 ## 🗂️ Documentação
 
-Abaixo, um exemplo de como a documentação do projeto foi estruturada:
+Veja como a documentação foi estruturada para guiar o desenvolvimento:
 
-![Canvas do Sistema](img/canvas.png)
+<img src="img/canvas.png" alt="Canvas do Sistema" width="600" style="display: block; margin: auto;">
 
+---
 
-## Arquitetura MVC
+## 🏗️ Arquitetura MVC
 
-![MVC](img/arquitetura.png)
+O projeto segue o padrão **MVC** (Model-View-Controller):
 
+<img src="img/arquitetura.png" alt="Arquitetura MVC" width="100" style="display: block; margin: auto;">
 
+---
 
-## Modelagem do BancoDados
+## 🗄️ Modelagem do Banco de Dados
 
-![MER do BB](img/ModelagemBanco.jpeg)
+Aqui está a modelagem utilizada para o banco de dados:
 
+<img src="img/ModelagemBanco.jpeg" alt="MER do Banco de Dados" width="700" style="display: block; margin: auto;">
+
+---
 
 ## 📦 Como Instalar e Executar
 
-1. Clone o repositório:
+1. Clone o repositório:  
    ```bash
    git clone https://github.com/seu_usuario/SeguroDeVida.git
