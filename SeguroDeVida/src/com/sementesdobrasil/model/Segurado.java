@@ -5,6 +5,7 @@ import java.time.format.DateTimeFormatter;
 import com.sementesdobrasil.util.DataUtils;
 
 public class Segurado {
+	private int id;
 	private String nome;
 	private LocalDate dataNascimento;
 	private String genero;
@@ -112,6 +113,14 @@ public class Segurado {
 
 	public void setCep(String cep) {
 		this.cep = cep;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getSenha() {

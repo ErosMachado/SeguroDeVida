@@ -228,6 +228,8 @@ public class CadastroCotacaoView extends JFrame {
 					String tipoSeguro = cotacaoService.definirTipoSeguro(genero, idade, profissao, faixaSalarial);
 					double valorFinal = cotacaoService.calcularValorFinal(genero, idade, profissao, faixaSalarial);
 					String capitaisSegurados = cotacaoService.obterCapitaisSegurados(tipoSeguro);
+					
+					
 
 					// Abre a página CotacaoView com os dados calculados
 					CotacaoView cotacaoView = new CotacaoView(tipoSeguro, valorFinal, capitaisSegurados);

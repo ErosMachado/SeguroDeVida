@@ -3,6 +3,15 @@ package com.sementesdobrasil.model;
 import java.util.List;
 
 public class Seguro {
+	private int id;
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	private String tipo;
 	private double valorBase;
 	private double valorFinal;

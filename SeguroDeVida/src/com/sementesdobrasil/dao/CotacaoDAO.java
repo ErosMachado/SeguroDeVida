@@ -14,15 +14,14 @@ public class CotacaoDAO {
 	}
 
 
-	public void save(Cotacao cotacao) throws SQLException {
-		String sql = "INSERT INTO cotacoes (segurado_id, seguro_tipo, valor_final, corretor_id) VALUES (?, ?, ?, ?)";
+	public void saveCotacao(Cotacao cotacao) throws SQLException {
+		String sql = "INSERT INTO T_COTACAO (ID_SEGURADO, ID_SEGURO, ID_CORRETOR, VALOR_FINAL, DATA_COTACAO) VALUES (?, ?, ?, ?, CURRENT_TIMESTAMP)";
 		PreparedStatement stmt = connection.prepareStatement(sql);
-		// stmt.setInt(1, cotacao.getSegurado().getId());
-		stmt.setString(2, cotacao.getSeguro().getTipo());
-		stmt.setDouble(3, cotacao.getValorFinal());
-		// stmt.setInt(4, cotacao.getCorretor().getId());
+		stmt.setInt(1, cotacao.getSegurado().getId());  // ID do segurado
+		stmt.setInt(2, cotacao.getSeguro().getId());    // ID do seguro
+		stmt.setInt(3, cotacao.getCorretor().getId());  // ID do corretor
+		stmt.setDouble(4, cotacao.getValorFinal());  // Valor final calculado
 		stmt.executeUpdate();
-		stmt.close();
 	}
 	
 	public Connection getConnection() {
