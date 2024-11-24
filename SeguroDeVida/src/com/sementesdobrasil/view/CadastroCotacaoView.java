@@ -1,4 +1,4 @@
-package com.sementesdobrasil.view;
+package com.sementesdobrasil.view;//teste
 
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -18,11 +18,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-import com.sementesdobrasil.dao.CotacaoDAO;
-import com.sementesdobrasil.model.Corretor;
-import com.sementesdobrasil.model.Cotacao;
-import com.sementesdobrasil.model.Segurado;
-import com.sementesdobrasil.model.Seguro;
+
 import com.sementesdobrasil.service.CotacaoService;
 
 public class CadastroCotacaoView extends JFrame {
@@ -54,7 +50,7 @@ public class CadastroCotacaoView extends JFrame {
 		setContentPane(contentPane);
 
 		// Cabeçalho
-		JLabel titulo = new JLabel("Cotação de Seguro de Vida");
+		JLabel titulo = new JLabel("Simulação de Cotação de Seguro de Vida");
 		titulo.setFont(new Font("Roboto", Font.BOLD, 28)); // Título maior
 		titulo.setBounds(200, 20, 400, 40);
 		titulo.setHorizontalAlignment(SwingConstants.CENTER);
@@ -245,17 +241,6 @@ public class CadastroCotacaoView extends JFrame {
 		            String tipoSeguro = cotacaoService.definirTipoSeguro(genero, idade, profissao, faixaSalarial);
 		            double valorFinal = cotacaoService.calcularValorFinal(genero, idade, profissao, faixaSalarial);
 		            String capitaisSegurados = cotacaoService.obterCapitaisSegurados(tipoSeguro);
-
-		            // Cria o objeto Cotacao a ser salvo no banco
-		            Cotacao cotacao = new Cotacao();
-		            cotacao.setSegurado(new Segurado(nome, idade, genero));  // Exemplo de como preencher o segurado
-		            cotacao.setSeguro(new Seguro(tipoSeguro));               // Exemplo de como preencher o seguro
-		            cotacao.setValorFinal(valorFinal);
-		            cotacao.setCorretor(new Corretor(nome));       // Exemplo de como preencher o corretor (supondo que você tenha essa informação)
-
-		            // Chama o método para salvar a cotação no banco
-		            CotacaoDAO cotacaoDAO = new CotacaoDAO();  // Classe de acesso ao banco
-		            cotacaoDAO.saveCotacao(cotacao);
 
 		            // Abre a página CotacaoView com os dados calculados
 		            CotacaoView cotacaoView = new CotacaoView(tipoSeguro, valorFinal, capitaisSegurados);
