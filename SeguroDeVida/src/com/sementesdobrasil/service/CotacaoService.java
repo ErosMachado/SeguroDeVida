@@ -17,7 +17,7 @@ public class CotacaoService {
 	}
 
 	public Cotacao calcularCotacao(Segurado segurado, Seguro seguro) throws Exception {
-		// Implementar l�gica de cálculo baseada nas regras definidas
+		// Implementar l gica de cálculo baseada nas regras definidas
 		double valorBase = 100.0; // Valor base figurado
 		// Multiplicadores
 		double multiplicadorIdade = calcularMultiplicadorIdade(segurado.getDataNascimento());
@@ -61,7 +61,7 @@ public class CotacaoService {
 			return 1.0;
 		case "entrega":
 			return 1.2;
-		case "constru��o civil":
+		case "constru  o civil":
 			return 1.5;
 		default:
 			return 1.0;
@@ -91,5 +91,63 @@ public class CotacaoService {
 			return 1.0;
 		}
 	}
+
+	public String definirTipoSeguro(String genero, int idade, String profissao, String faixaSalarial) {
+	    if (genero.equalsIgnoreCase("Feminino") && idade <= 30) {
+	        return "Seguro Mulher Básico";
+	    } else if (genero.equalsIgnoreCase("Masculino") && idade <= 30) {
+	        return "Seguro Homem Básico";
+	    } else if (genero.equalsIgnoreCase("Feminino") && idade > 30) {
+	        return "Seguro Mulher Premium";
+	    } else {
+	        return "Seguro Homem Premium";
+	    }
+	}
+
+	public double calcularValorFinal(String genero, int idade, String profissao, String faixaSalarial) {
+	    double valorBase = 100.0;
+
+	    // Multiplicadores
+	    double multiplicadorGenero = genero.equalsIgnoreCase("Feminino") ? 0.9 : 1.0;
+	    double multiplicadorIdade = (idade <= 30) ? 1.0 : (idade <= 50) ? 1.2 : 1.5;
+	    double multiplicadorProfissao = (profissao.contains("Risco") || profissao.contains("Perigoso")) ? 1.5 : 1.0;
+	    double multiplicadorSalario = (faixaSalarial.contains("Acima de 5050")) ? 1.3 : 1.0;
+
+	    return valorBase * multiplicadorGenero * multiplicadorIdade * multiplicadorProfissao * multiplicadorSalario;
+	}
+
+	public String obterCapitaisSegurados(String tipoSeguro) {
+	    switch (tipoSeguro) {
+	        case "Seguro Mulher Básico":
+	            return """
+	                BÁSICA (MORTE): R$ 50.000,00
+	                MORTE ACIDENTAL: R$ 40.000,00
+	                FUNERAL: R$ 10.000,00
+	                """;
+	        case "Seguro Mulher Premium":
+	            return """
+	                BÁSICA (MORTE): R$ 100.000,00
+	                MORTE ACIDENTAL: R$ 80.000,00
+	                DOENÇAS GRAVES: R$ 20.000,00
+	                FUNERAL: R$ 20.000,00
+	                """;
+	        case "Seguro Homem Básico":
+	            return """
+	                BÁSICA (MORTE): R$ 50.000,00
+	                MORTE ACIDENTAL: R$ 30.000,00
+	                FUNERAL: R$ 10.000,00
+	                """;
+	        case "Seguro Homem Premium":
+	            return """
+	                BÁSICA (MORTE): R$ 150.000,00
+	                MORTE ACIDENTAL: R$ 100.000,00
+	                DOENÇAS GRAVES: R$ 30.000,00
+	                FUNERAL: R$ 20.000,00
+	                """;
+	        default:
+	            return "Capitais Segurados Indisponíveis";
+	    }
+	}
+
 
 }
