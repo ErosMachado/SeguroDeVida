@@ -15,7 +15,7 @@ public class CadastroSeguradoView extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JTextField nomeField;
-	private JTextField dataNascimentoField;
+	private JTextField idadeField;
 	private JComboBox<String> generoBox;
 	private JTextField emailField;
 	private JTextField telefoneField;
@@ -36,8 +36,8 @@ public class CadastroSeguradoView extends JFrame {
 		// Inicializando os campos
 		nomeField = new JTextField();
 		nomeField.setBounds(360, 5, 350, 41);
-		dataNascimentoField = new JTextField();
-		dataNascimentoField.setBounds(360, 56, 350, 41);
+		idadeField = new JTextField();
+		idadeField.setBounds(360, 56, 350, 41);
 		generoBox = new JComboBox<>(new String[] { "", "Masculino", "Feminino", "Prefiro não informar", "Outro" });
 		generoBox.setBounds(360, 108, 350, 41);
 		emailField = new JTextField();
@@ -64,10 +64,10 @@ public class CadastroSeguradoView extends JFrame {
 		label.setBounds(0, 5, 350, 41);
 		getContentPane().add(label);
 		getContentPane().add(nomeField);
-		JLabel label_1 = new JLabel("Data de Nascimento (yyyy-MM-dd HH:mm:ss):");
+		JLabel label_1 = new JLabel("Idade Atual:");
 		label_1.setBounds(0, 56, 350, 41);
 		getContentPane().add(label_1);
-		getContentPane().add(dataNascimentoField);
+		getContentPane().add(idadeField);
 		JLabel label_2 = new JLabel("Gênero:");
 		label_2.setBounds(0, 107, 350, 41);
 		getContentPane().add(label_2);
@@ -107,11 +107,11 @@ public class CadastroSeguradoView extends JFrame {
 		btnEscondido.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				nomeField.setText("João da Silva");
-		        dataNascimentoField.setText("2000-01-01 00:00:00");
+		        idadeField.setText("28");
 		        generoBox.setSelectedIndex(1);
-		        emailField.setText("joao@email.com");
+		        emailField.setText("joao@gmail.com");
 		        telefoneField.setText("(11) 98765-4321");
-		        cpfField.setText("123.456.789-00");
+		        cpfField.setText("123.456.488-10");
 		        cepField.setText("12345-678");
 		        senhaField.setText("Senha123");
 		        confirmarSenhaField.setText("Senha123");
@@ -148,7 +148,7 @@ public class CadastroSeguradoView extends JFrame {
 		salvarButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String nome = nomeField.getText();
-				String dataNascimento = dataNascimentoField.getText();
+				int idade = Integer.parseInt(idadeField.getText()); 
 				String genero = generoBox.getSelectedItem().toString();
 				String email = emailField.getText();
 				String telefone = telefoneField.getText();
@@ -157,7 +157,7 @@ public class CadastroSeguradoView extends JFrame {
 				String senha = new String(senhaField.getPassword());
 				String estadoCivil = estadoCivilBox.getSelectedItem().toString();
 
-				Segurado segurado = new Segurado(nome, dataNascimento, genero, email, telefone, cpf, cep, senha,
+				Segurado segurado = new Segurado(nome, idade, genero, email, telefone, cpf, cep, senha,
 						estadoCivil);
 
 				SeguradoDAO seguradoDAO = new SeguradoDAO();
@@ -165,6 +165,10 @@ public class CadastroSeguradoView extends JFrame {
 				try {
 					seguradoDAO.save(segurado);
 					JOptionPane.showMessageDialog(null, "Segurado salvo com sucesso!");
+					LoginBuilder login = new LoginBuilder();
+					login.getFrame().setVisible(true);
+					setVisible(false);
+					
 				} catch (SQLException ex) {
 					JOptionPane.showMessageDialog(null, "Erro ao salvar segurado: " + ex.getMessage());
 				}
@@ -180,7 +184,7 @@ public class CadastroSeguradoView extends JFrame {
 						"Tem certeza que deseja limpar?", "Limpar Dados", JOptionPane.YES_NO_OPTION);
 				if (resposta == JOptionPane.YES_OPTION) {
 					nomeField.setText("");
-					dataNascimentoField.setText("");
+					idadeField.setText("");
 					generoBox.setSelectedIndex(0);
 					emailField.setText("");
 					telefoneField.setText("");
@@ -208,9 +212,11 @@ public class CadastroSeguradoView extends JFrame {
 		return nomeField.getText();
 	}
 
-	public String getDataNascimento() {
-		return dataNascimentoField.getText();
-	}
+	
+
+
+	
+
 
 	public String getGenero() {
 		return (String) generoBox.getSelectedItem();
@@ -260,5 +266,9 @@ public class CadastroSeguradoView extends JFrame {
 				new CadastroSeguradoView().setVisible(true);
 			}
 		});
+	}
+
+	public int getIdade() {
+		return Integer.parseInt(idadeField.getText());
 	}
 }

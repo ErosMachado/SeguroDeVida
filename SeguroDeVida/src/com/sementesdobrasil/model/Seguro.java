@@ -48,6 +48,10 @@ public class Seguro {
 
 // getters and setters
 
+	public Seguro(String tipoSeguro) {
+		// TODO Auto-generated constructor stub
+	}
+
 	public String getTipo() {
 		return tipo;
 	}

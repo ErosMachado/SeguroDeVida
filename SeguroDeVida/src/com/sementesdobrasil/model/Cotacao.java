@@ -22,6 +22,10 @@ public class Cotacao {
 
 	// getters and setters
 
+	public Cotacao() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public Segurado getSegurado() {
 		return segurado;
 	}

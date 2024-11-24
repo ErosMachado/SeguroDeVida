@@ -1,12 +1,29 @@
 package com.sementesdobrasil.view;
 
-import javax.swing.*;
-
-import com.sementesdobrasil.service.CotacaoService;
-
-import java.awt.*;
+import java.awt.Color;
+import java.awt.EventQueue;
+import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+
+import com.sementesdobrasil.dao.CotacaoDAO;
+import com.sementesdobrasil.model.Corretor;
+import com.sementesdobrasil.model.Cotacao;
+import com.sementesdobrasil.model.Segurado;
+import com.sementesdobrasil.model.Seguro;
+import com.sementesdobrasil.service.CotacaoService;
 
 public class CadastroCotacaoView extends JFrame {
 
@@ -205,43 +222,53 @@ public class CadastroCotacaoView extends JFrame {
 		});
 
 		salvarButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try {
-					// Captura os dados preenchidos no formulário
-					String nome = nomeField.getText();
-					int idade = Integer.parseInt(idadeField.getText());
-					String genero = (String) generoCombo.getSelectedItem();
-					String faixaSalarial = (String) rendaCombo.getSelectedItem();
-					String profissao = (String) profissaoCombo.getSelectedItem();
+		    public void actionPerformed(ActionEvent e) {
+		        try {
+		            // Captura os dados preenchidos no formulário
+		            String nome = nomeField.getText();
+		            int idade = Integer.parseInt(idadeField.getText());
+		            String genero = (String) generoCombo.getSelectedItem();
+		            String faixaSalarial = (String) rendaCombo.getSelectedItem();
+		            String profissao = (String) profissaoCombo.getSelectedItem();
 
-					// Validação simples
-					if (nome.isEmpty() || idade <= 0 || genero.equals("*Preenchimento Obrigatório*")
-							|| faixaSalarial.equals("*Preenchimento Obrigatório*")
-							|| profissao.equals("*Preenchimento Obrigatório*")) {
-						JOptionPane.showMessageDialog(CadastroCotacaoView.this,
-								"Todos os campos devem ser preenchidos!");
-						return;
-					}
+		            // Validação simples
+		            if (nome.isEmpty() || idade <= 0 || genero.equals("*Preenchimento Obrigatório*")
+		                    || faixaSalarial.equals("*Preenchimento Obrigatório*")
+		                    || profissao.equals("*Preenchimento Obrigatório*")) {
+		                JOptionPane.showMessageDialog(CadastroCotacaoView.this,
+		                        "Todos os campos devem ser preenchidos!");
+		                return;
+		            }
 
-					// Chamada ao serviço de cálculo
-					CotacaoService cotacaoService = new CotacaoService();
-					String tipoSeguro = cotacaoService.definirTipoSeguro(genero, idade, profissao, faixaSalarial);
-					double valorFinal = cotacaoService.calcularValorFinal(genero, idade, profissao, faixaSalarial);
-					String capitaisSegurados = cotacaoService.obterCapitaisSegurados(tipoSeguro);
-					
-					
+		            // Chamada ao serviço de cálculo
+		            CotacaoService cotacaoService = new CotacaoService();
+		            String tipoSeguro = cotacaoService.definirTipoSeguro(genero, idade, profissao, faixaSalarial);
+		            double valorFinal = cotacaoService.calcularValorFinal(genero, idade, profissao, faixaSalarial);
+		            String capitaisSegurados = cotacaoService.obterCapitaisSegurados(tipoSeguro);
 
-					// Abre a página CotacaoView com os dados calculados
-					CotacaoView cotacaoView = new CotacaoView(tipoSeguro, valorFinal, capitaisSegurados);
-					cotacaoView.setVisible(true);
-					setVisible(false);
+		            // Cria o objeto Cotacao a ser salvo no banco
+		            Cotacao cotacao = new Cotacao();
+		            cotacao.setSegurado(new Segurado(nome, idade, genero));  // Exemplo de como preencher o segurado
+		            cotacao.setSeguro(new Seguro(tipoSeguro));               // Exemplo de como preencher o seguro
+		            cotacao.setValorFinal(valorFinal);
+		            cotacao.setCorretor(new Corretor(nome));       // Exemplo de como preencher o corretor (supondo que você tenha essa informação)
 
-				} catch (Exception ex) {
-					JOptionPane.showMessageDialog(CadastroCotacaoView.this,
-							"Erro ao processar a cotação: " + ex.getMessage());
-				}
-			}
+		            // Chama o método para salvar a cotação no banco
+		            CotacaoDAO cotacaoDAO = new CotacaoDAO();  // Classe de acesso ao banco
+		            cotacaoDAO.saveCotacao(cotacao);
+
+		            // Abre a página CotacaoView com os dados calculados
+		            CotacaoView cotacaoView = new CotacaoView(tipoSeguro, valorFinal, capitaisSegurados);
+		            cotacaoView.setVisible(true);
+		            setVisible(false);
+
+		        } catch (Exception ex) {
+		            JOptionPane.showMessageDialog(CadastroCotacaoView.this,
+		                    "Erro ao processar a cotação: " + ex.getMessage());
+		        }
+		    }
 		});
+
 
 	}
 }

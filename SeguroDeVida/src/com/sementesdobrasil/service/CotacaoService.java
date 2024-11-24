@@ -5,8 +5,6 @@ import com.sementesdobrasil.model.Segurado;
 import com.sementesdobrasil.model.Seguro;
 
 import java.sql.SQLException;
-import java.time.LocalDate;
-import java.time.Period;
 import com.sementesdobrasil.dao.CotacaoDAO;
 
 public class CotacaoService {
@@ -20,7 +18,7 @@ public class CotacaoService {
 		// Implementar l gica de cálculo baseada nas regras definidas
 		double valorBase = 100.0; // Valor base figurado
 		// Multiplicadores
-		double multiplicadorIdade = calcularMultiplicadorIdade(segurado.getDataNascimento());
+		double multiplicadorIdade = calcularMultiplicadorIdade(segurado.getIdade());
 		double multiplicadorGenero = calcularMultiplicadorGenero(segurado.getGenero());
 		double multiplicadorProfissao = calcularMultiplicadorProfissao(seguro.getProfissao());
 		double multiplicadorSalario = calcularMultiplicadorSalario(seguro.getSalario());
@@ -36,8 +34,7 @@ public class CotacaoService {
 		return cotacao;
 	}
 
-	private double calcularMultiplicadorIdade(LocalDate dataNascimento) {
-		int idade = Period.between(dataNascimento, LocalDate.now()).getYears();
+	private double calcularMultiplicadorIdade(int idade) {
 		if (idade >= 18 && idade <= 30)
 			return 1.0;
 		if (idade >= 31 && idade <= 50)

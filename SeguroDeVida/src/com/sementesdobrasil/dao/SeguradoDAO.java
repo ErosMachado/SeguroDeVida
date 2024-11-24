@@ -10,10 +10,10 @@ public class SeguradoDAO {
 
 
 	public void save(Segurado segurado) throws SQLException {
-		String sql = "INSERT INTO t_segurado (nome, data_nascimento, genero, email, telefone, cpf, cep, senha, estado_civil) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO t_segurado (nome, idade, genero, email, telefone, cpf, cep, senha, estado_civil) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		try (PreparedStatement stmt = connection.prepareStatement(sql)) {
 			stmt.setString(1, segurado.getNome());
-			stmt.setDate(2, Date.valueOf(segurado.getDataNascimento()));
+			stmt.setInt(2, segurado.getIdade());
 			stmt.setString(3, segurado.getGenero());
 			stmt.setString(4, segurado.getEmail());
 			stmt.setString(5, segurado.getTelefone());
@@ -51,8 +51,9 @@ public class SeguradoDAO {
 	        try (ResultSet rs = stmt.executeQuery()) {
 	            if (rs.next()) {
 	                // Recuperando os dados e criando o objeto Segurado
+	            	//int id = rs.getInt("id_segurado");
 	                String nome = rs.getString("nome");
-	                String dataNascimento = rs.getString("data_nascimento");
+	                int idade = rs.getInt("idade");
 	                String genero = rs.getString("genero");
 	                String telefone = rs.getString("telefone");
 	                String cpf = rs.getString("cpf");
@@ -60,7 +61,8 @@ public class SeguradoDAO {
 	                String estadoCivil = rs.getString("estado_civil");
 	                String senhaDB = rs.getString("senha");
 	                
-	                return new Segurado(nome, dataNascimento, genero, email, telefone, cpf, cep, senhaDB, estadoCivil);
+	                return new Segurado(nome, idade, genero, email, telefone, cpf, cep, senhaDB, estadoCivil);
+
 	            }
 	        }
 	    }

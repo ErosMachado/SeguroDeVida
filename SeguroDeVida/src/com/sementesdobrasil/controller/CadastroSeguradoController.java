@@ -34,7 +34,7 @@ public class CadastroSeguradoController {
 	private void salvarSegurado() {
 		try {
 			String nome = view.getNome();
-			String dataNascimento = view.getDataNascimento();
+			int idade = view.getIdade();
 			String genero = view.getGenero();
 			String email = view.getEmail();
 			String telefone = view.getTelefone();
@@ -44,7 +44,7 @@ public class CadastroSeguradoController {
             String confirmarSenha = view.getConfirmarSenha();
 			String estadoCivil = view.getEstadoCivil(); 
 
-			if (nome.isEmpty() || dataNascimento.isEmpty() || email.isEmpty() || cpf.isEmpty() || cep.isEmpty()
+			if (nome.isEmpty() || email.isEmpty() || cpf.isEmpty() || cep.isEmpty()
 					|| senha.isEmpty() || confirmarSenha.isEmpty() || estadoCivil.isEmpty()) {
 				JOptionPane.showMessageDialog(view, "Todos os campos sao obrigatorios.", "Erro",
 						JOptionPane.ERROR_MESSAGE);
@@ -57,7 +57,7 @@ public class CadastroSeguradoController {
                 return;
             }
 
-			Segurado segurado = new Segurado(nome, dataNascimento, genero, email, telefone, cpf, cep, senha,
+			Segurado segurado = new Segurado(nome, idade, genero, email, telefone, cpf, cep, senha,
 					estadoCivil);
 			service.salvarSegurado(segurado);
 			JOptionPane.showMessageDialog(view, "Segurado cadastrado com sucesso!", "Sucesso",

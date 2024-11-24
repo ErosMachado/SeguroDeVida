@@ -4,7 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Date;
 import java.sql.SQLException;
 
 import javax.swing.BorderFactory;
@@ -32,9 +31,9 @@ public class PaginaUsuarioView extends JFrame {
 	    infoPanel.setBorder(BorderFactory.createTitledBorder("Informações Pessoais"));
 
 	    infoPanel.add(new JLabel("Nome: " + segurado.getNome()));
-	    infoPanel.add(new JLabel("Data de Nascimento: " + Date.valueOf(segurado.getDataNascimento())));
+	    infoPanel.add(new JLabel("idade: " + segurado.getIdade()));
 	    infoPanel.add(new JLabel("Gênero: " + segurado.getGenero()));
-	    infoPanel.add(new JLabel("E-mail: " + segurado.getEmail().toLowerCase()));
+	    infoPanel.add(new JLabel("E-mail: " + segurado.getEmail()));
 	    infoPanel.add(new JLabel("Telefone: " + segurado.getTelefone()));
 	    infoPanel.add(new JLabel("CPF: " + segurado.getCpf()));
 	    infoPanel.add(new JLabel("CEP: " + segurado.getCep()));

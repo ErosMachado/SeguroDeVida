@@ -110,7 +110,7 @@ public class LoginBuilder {
 
         // Adicionar ações aos botões
         loginButton.addActionListener(e -> {
-            String email = emailField.getText().toLowerCase();
+            String email = emailField.getText();
             char[] passwordChars = passwordField.getPassword();
             String senha = new String(passwordChars);
 
