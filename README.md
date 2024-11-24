@@ -1,4 +1,6 @@
-# Seguro de Vida - Aplicação
+# Seguro de Vida - Dev Marine
+
+![logo de Dev Marine](img/LogoDevMarine.jpeg)
 
 Bem-vindo ao repositório do **Seguro de Vida**! 🚀 Este projeto é uma aplicação para gerenciar cotações de seguros com diversas funcionalidades.
 
