@@ -15,106 +15,104 @@ import javax.swing.JPanel;
 
 import com.sementesdobrasil.dao.SeguradoDAO;
 import com.sementesdobrasil.model.Segurado;
+import com.sementesdobrasil.util.GerenciadorDeJanelas;
 
 public class PaginaUsuarioView extends JFrame {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
+   private Segurado segurado; // Objeto segurado associado a esta janela
 
-	public PaginaUsuarioView(Segurado segurado) {
-	    setTitle("Página do Usuário");
-	    setSize(500, 400);
-	    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	    getContentPane().setLayout(new BorderLayout());
+    public PaginaUsuarioView(Segurado segurado) {
+        this.segurado = segurado; // Armazenar o segurado recebido
+        setTitle("Página do Usuário");
+        setSize(500, 400);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new BorderLayout());
 
-	    // Painel para informações pessoais
-	    JPanel infoPanel = new JPanel();
-	    infoPanel.setLayout(new GridLayout(7, 1, 10, 10)); // 7 linhas para exibir todas as informações
-	    infoPanel.setBorder(BorderFactory.createTitledBorder("Informações Pessoais"));
+        // Painel para informações pessoais
+        JPanel infoPanel = new JPanel();
+        infoPanel.setLayout(new GridLayout(7, 1, 10, 10)); // 7 linhas para exibir todas as informações
+        infoPanel.setBorder(BorderFactory.createTitledBorder("Informações Pessoais"));
 
-	    infoPanel.add(new JLabel("Nome: " + segurado.getNome()));
-	    infoPanel.add(new JLabel("idade: " + segurado.getIdade()));
-	    infoPanel.add(new JLabel("Gênero: " + segurado.getGenero()));
-	    infoPanel.add(new JLabel("E-mail: " + segurado.getEmail()));
-	    infoPanel.add(new JLabel("Telefone: " + segurado.getTelefone()));
-	    infoPanel.add(new JLabel("CPF: " + segurado.getCpf()));
-	    infoPanel.add(new JLabel("CEP: " + segurado.getCep()));
+        infoPanel.add(new JLabel("Nome: " + segurado.getNome()));
+        infoPanel.add(new JLabel("Idade: " + segurado.getIdade()));
+        infoPanel.add(new JLabel("Gênero: " + segurado.getGenero()));
+        infoPanel.add(new JLabel("E-mail: " + segurado.getEmail()));
+        infoPanel.add(new JLabel("Telefone: " + segurado.getTelefone()));
+        infoPanel.add(new JLabel("CPF: " + segurado.getCpf()));
+        infoPanel.add(new JLabel("CEP: " + segurado.getCep()));
 
-	    // Painel para botões de ações
-	    JPanel buttonPanel = new JPanel();
-	    buttonPanel.setLayout(new GridLayout(1, 3, 10, 10));
+        // Painel para botões de ações
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new GridLayout(1, 3, 10, 10));
 
-	    JButton realizarSeguroButton = new JButton("Voltar ao início");
-	    JButton SeguroButton = new JButton("Contratar Seguro");
-	    JButton adicionarDependenteButton = new JButton("Adicionar Dependentes");
+        JButton realizarSeguroButton = new JButton("Voltar ao início");
+        JButton SeguroButton = new JButton("Contratar Seguro");
+        JButton adicionarDependenteButton = new JButton("Adicionar Dependentes");
 
-	    // Adicionando os botões ao painel
-	    buttonPanel.add(realizarSeguroButton);
-	    buttonPanel.add(SeguroButton);
-	    buttonPanel.add(adicionarDependenteButton);
+        // Adicionando os botões ao painel
+        buttonPanel.add(realizarSeguroButton);
+        buttonPanel.add(SeguroButton);
+        buttonPanel.add(adicionarDependenteButton);
 
-	    // Adicionando painéis à tela principal
-	    getContentPane().add(infoPanel, BorderLayout.CENTER);
-	    getContentPane().add(buttonPanel, BorderLayout.SOUTH);
+        // Adicionando painéis à tela principal
+        getContentPane().add(infoPanel, BorderLayout.CENTER);
+        getContentPane().add(buttonPanel, BorderLayout.SOUTH);
 
-	
-	    // Ações dos botões
-	    realizarSeguroButton.addActionListener(new ActionListener() {
-	        @Override
-	        public void actionPerformed(ActionEvent e) {
-	            int resposta = JOptionPane.showConfirmDialog(PaginaUsuarioView.this,
-						"Tem certeza que deseja voltar ao início?", "Voltar ao Início", JOptionPane.YES_NO_OPTION);
-				if (resposta == JOptionPane.YES_OPTION) {
-					TelaPrincipal main = new TelaPrincipal();
-					main.setVisible(true);
-					setVisible(false);
-				}
-	        }
-	    });
+        // Ações dos botões
+        realizarSeguroButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int resposta = JOptionPane.showConfirmDialog(PaginaUsuarioView.this,
+                        "Tem certeza que deseja voltar ao início?", "Voltar ao Início", JOptionPane.YES_NO_OPTION);
+                if (resposta == JOptionPane.YES_OPTION) {
+                    GerenciadorDeJanelas.trocarJanela(new TelaPrincipal());
+                }
+            }
+        });
 
-	    SeguroButton.addActionListener(new ActionListener() {    
-	        @Override
-	        public void actionPerformed(ActionEvent e) {
-	        	
-	        	CadastroCotacaoView cadastroCotacao = new CadastroCotacaoView();
-				cadastroCotacao.setVisible(true);
-				setVisible(false);
-	        	
-	        }
-	    });
+        SeguroButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                OficialCadastroCotacaoView cadastroCotacao = new OficialCadastroCotacaoView(segurado);  // Passando o objeto segurado
+                cadastroCotacao.setVisible(true);
+                setVisible(false); // Ocultando a tela atual
+            }
+        });
 
-	    adicionarDependenteButton.addActionListener(new ActionListener() {
-	        @Override
-	        public void actionPerformed(ActionEvent e) {
-	            JOptionPane.showMessageDialog(PaginaUsuarioView.this, "Abrir tela para adicionar dependentes.");                
-	        }
-	    });
+
+        adicionarDependenteButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(PaginaUsuarioView.this, "Abrir tela para adicionar dependentes.");
+            }
+        });
+    }
+
+    public Segurado getSegurado() {
+		return segurado;
 	}
 
-
-	public PaginaUsuarioView() {
-		this(new Segurado()); 
+	public void setSegurado(Segurado segurado) {
+		this.segurado = segurado;
 	}
 
 	public static void main(String[] args) {
-	    String email = "joao@email.com";
-	    String senha = "Senha123";
-	    
+        String email = "joao@email.com";
+        String senha = "Senha123";
 
+        SeguradoDAO seguradoDAO = new SeguradoDAO();
+        Segurado segurado = null;
 
-	    SeguradoDAO seguradoDAO = new SeguradoDAO();
-	    Segurado segurado = null;
+        try {
+            segurado = seguradoDAO.getSeguradoByEmailSenha(email, senha);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
-	    try {
-	        segurado = seguradoDAO.getSeguradoByEmailSenha(email, senha); 
-	    } catch (SQLException e) {
-	        e.printStackTrace();
-	    }
-
-	    if (segurado != null) {  
-	    	PaginaUsuarioView perfil = new PaginaUsuarioView(segurado);  // Passando o objeto segurado
-            perfil.setVisible(true);
-            
-	    } else {
-	        JOptionPane.showMessageDialog(null, "Credenciais inválidas.");
-	    }
-	}
+        if (segurado != null) {
+            GerenciadorDeJanelas.trocarJanela(new PaginaUsuarioView(segurado));
+        } else {
+            JOptionPane.showMessageDialog(null, "Credenciais inválidas.");
+        }
+    }
 }

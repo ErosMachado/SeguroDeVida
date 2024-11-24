@@ -18,7 +18,6 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-
 import com.sementesdobrasil.service.CotacaoService;
 
 public class CadastroCotacaoView extends JFrame {
@@ -218,42 +217,41 @@ public class CadastroCotacaoView extends JFrame {
 		});
 
 		salvarButton.addActionListener(new ActionListener() {
-		    public void actionPerformed(ActionEvent e) {
-		        try {
-		            // Captura os dados preenchidos no formulário
-		            String nome = nomeField.getText();
-		            int idade = Integer.parseInt(idadeField.getText());
-		            String genero = (String) generoCombo.getSelectedItem();
-		            String faixaSalarial = (String) rendaCombo.getSelectedItem();
-		            String profissao = (String) profissaoCombo.getSelectedItem();
+			public void actionPerformed(ActionEvent e) {
+				try {
+					// Captura os dados preenchidos no formulário
+					String nome = nomeField.getText();
+					int idade = Integer.parseInt(idadeField.getText());
+					String genero = (String) generoCombo.getSelectedItem();
+					String faixaSalarial = (String) rendaCombo.getSelectedItem();
+					String profissao = (String) profissaoCombo.getSelectedItem();
 
-		            // Validação simples
-		            if (nome.isEmpty() || idade <= 0 || genero.equals("*Preenchimento Obrigatório*")
-		                    || faixaSalarial.equals("*Preenchimento Obrigatório*")
-		                    || profissao.equals("*Preenchimento Obrigatório*")) {
-		                JOptionPane.showMessageDialog(CadastroCotacaoView.this,
-		                        "Todos os campos devem ser preenchidos!");
-		                return;
-		            }
+					// Validação simples
+					if (nome.isEmpty() || idade <= 0 || genero.equals("*Preenchimento Obrigatório*")
+							|| faixaSalarial.equals("*Preenchimento Obrigatório*")
+							|| profissao.equals("*Preenchimento Obrigatório*")) {
+						JOptionPane.showMessageDialog(CadastroCotacaoView.this,
+								"Todos os campos devem ser preenchidos!");
+						return;
+					}
 
-		            // Chamada ao serviço de cálculo
-		            CotacaoService cotacaoService = new CotacaoService();
-		            String tipoSeguro = cotacaoService.definirTipoSeguro(genero, idade, profissao, faixaSalarial);
-		            double valorFinal = cotacaoService.calcularValorFinal(genero, idade, profissao, faixaSalarial);
-		            String capitaisSegurados = cotacaoService.obterCapitaisSegurados(tipoSeguro);
+					// Chamada ao serviço de cálculo
+					CotacaoService cotacaoService = new CotacaoService();
+					String tipoSeguro = cotacaoService.definirTipoSeguro(genero, idade, profissao, faixaSalarial);
+					double valorFinal = cotacaoService.calcularValorFinal(genero, idade, profissao, faixaSalarial);
+					String capitaisSegurados = cotacaoService.obterCapitaisSegurados(tipoSeguro);
 
-		            // Abre a página CotacaoView com os dados calculados
-		            CotacaoView cotacaoView = new CotacaoView(tipoSeguro, valorFinal, capitaisSegurados);
-		            cotacaoView.setVisible(true);
-		            setVisible(false);
+					// Abre a página CotacaoView com os dados calculados
+					CotacaoView cotacaoView = new CotacaoView(tipoSeguro, valorFinal, capitaisSegurados);
+					cotacaoView.setVisible(true);
+					setVisible(false);
 
-		        } catch (Exception ex) {
-		            JOptionPane.showMessageDialog(CadastroCotacaoView.this,
-		                    "Erro ao processar a cotação: " + ex.getMessage());
-		        }
-		    }
+				} catch (Exception ex) {
+					JOptionPane.showMessageDialog(CadastroCotacaoView.this,
+							"Erro ao processar a cotação: " + ex.getMessage());
+				}
+			}
 		});
-
 
 	}
 }
