@@ -17,16 +17,11 @@ Aqui está uma prévia da interface principal:
 ![Tela Principal](img/telaPrincipal.jpeg)
 
 
-## Arquitetura MVC
-
-![MVC](img/arquitetura.png)
-
-
 ## 📖 Funcionalidades
 
 - 📋 Cadastro de cotações.
 - 🔍 Busca e listagem de seguros.
-- 📊 Relatórios detalhados.
+- 📊 Detalhamento de ações.
 
 ## 🛠️ Tecnologias Utilizadas
 
@@ -38,7 +33,13 @@ Aqui está uma prévia da interface principal:
 
 Abaixo, um exemplo de como a documentação do projeto foi estruturada:
 
-![Fluxograma do Sistema](img/fluxograma.png)
+![Canvas do Sistema](img/canvas.png)
+
+
+## Arquitetura MVC
+
+![MVC](img/arquitetura.png)
+
 
 
 ## Modelagem do BancoDados
