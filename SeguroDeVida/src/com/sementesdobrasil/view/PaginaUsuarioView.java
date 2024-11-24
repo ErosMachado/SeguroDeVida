@@ -13,7 +13,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
 
 import com.sementesdobrasil.dao.SeguradoDAO;
 import com.sementesdobrasil.model.Segurado;
@@ -57,6 +56,7 @@ public class PaginaUsuarioView extends JFrame {
 	    getContentPane().add(infoPanel, BorderLayout.CENTER);
 	    getContentPane().add(buttonPanel, BorderLayout.SOUTH);
 
+	
 	    // Ações dos botões
 	    realizarSeguroButton.addActionListener(new ActionListener() {
 	        @Override
@@ -97,7 +97,9 @@ public class PaginaUsuarioView extends JFrame {
 
 	public static void main(String[] args) {
 	    String email = "joao@email.com";
-	    String senha = "senha123";
+	    String senha = "Senha123";
+	    
+
 
 	    SeguradoDAO seguradoDAO = new SeguradoDAO();
 	    Segurado segurado = null;
@@ -108,10 +110,10 @@ public class PaginaUsuarioView extends JFrame {
 	        e.printStackTrace();
 	    }
 
-	    if (segurado != null) {
-	        SwingUtilities.invokeLater(() -> {
-	        	System.out.println("Segurado vazio");
-	        });
+	    if (segurado != null) {  
+	    	PaginaUsuarioView perfil = new PaginaUsuarioView(segurado);  // Passando o objeto segurado
+            perfil.setVisible(true);
+            
 	    } else {
 	        JOptionPane.showMessageDialog(null, "Credenciais inválidas.");
 	    }
