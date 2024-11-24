@@ -49,7 +49,19 @@ public class Seguro {
 // getters and setters
 
 	public Seguro(String tipoSeguro) {
-		// TODO Auto-generated constructor stub
+}
+	
+	public Seguro(int id, String profissao, double salario, String condicaoSaude, double valorFinal) {
+	    this.id = id;
+	    this.profissao = profissao;
+	    this.salario = salario;
+	    this.condicaoSaude = condicaoSaude;
+	    this.valorFinal = valorFinal;
+	}
+
+
+	public Seguro(int idSeguro) {
+		this.id = idSeguro;
 	}
 
 	public String getTipo() {

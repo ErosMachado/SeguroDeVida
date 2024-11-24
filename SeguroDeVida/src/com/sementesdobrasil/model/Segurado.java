@@ -52,6 +52,10 @@ public class Segurado {
 
 
 
+	public Segurado(int idSegurado) {
+		this.id = idSegurado;
+	}
+
 	// Getters e Setters
     public String getNome() {
         return nome;

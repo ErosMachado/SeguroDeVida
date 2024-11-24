@@ -26,6 +26,22 @@ public class SeguradoDAO {
 	}
 	
 	
+	public int getIdSeguradoLogado(String email) throws SQLException {
+	    String sql = "SELECT id_segurado FROM t_segurado WHERE email = ?";
+	    try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+	        stmt.setString(1, email);
+	        try (ResultSet rs = stmt.executeQuery()) {
+	            if (rs.next()) {
+	                return rs.getInt("id_segurado");
+	            } else {
+	                throw new SQLException("Segurado não encontrado para o usuário logado: " + email);
+	            }
+	        }
+	    }
+	}
+
+	
+	
 	public boolean validarCredenciais(String email, String senha) {
 	    String sql = "SELECT COUNT(*) FROM t_segurado WHERE email = ? AND senha = ?";
 	    try (PreparedStatement stmt = connection.prepareStatement(sql)) {

@@ -6,6 +6,7 @@ import com.sementesdobrasil.dao.SeguradoDAO;
 public class SeguradoService {
 	private SeguradoDAO seguradoDAO;
 
+
 	public SeguradoService() {
 		this.seguradoDAO = new SeguradoDAO();
 	}

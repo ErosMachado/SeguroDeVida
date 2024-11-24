@@ -20,13 +20,19 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
 
+import com.sementesdobrasil.dao.CotacaoDAO;
+import com.sementesdobrasil.dao.SeguradoDAO;
+import com.sementesdobrasil.model.Cotacao;
 import com.sementesdobrasil.model.Segurado;
+import com.sementesdobrasil.model.Seguro;
 import com.sementesdobrasil.service.CotacaoService;
 import com.sementesdobrasil.util.GerenciadorDeJanelas;
 
 public class OficialCadastroCotacaoView extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private Segurado segurado; // Variável de instância para armazenar o segurado
+
+
 
 	public OficialCadastroCotacaoView(Segurado segurado) {
 		this.segurado = segurado;
@@ -117,42 +123,66 @@ public class OficialCadastroCotacaoView extends JFrame {
 		JButton realizarSeguroButton = criarBotaoArredondado("Realizar Seguro", 350, 400, Color.GREEN);
 		cadastroPanel.add(realizarSeguroButton);
 
+		// Dentro do ActionListener do botão "Realizar Seguro"
 		realizarSeguroButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				try {
-					// Captura os dados preenchidos no formulário
-					int idade = Integer.parseInt(idadeField.getText());
-					String genero = (String) generoCombo.getSelectedItem();
-					String faixaSalarial = (String) rendaCombo.getSelectedItem();
-					String profissao = (String) profissaoCombo.getSelectedItem();
+		    @Override
+		    public void actionPerformed(ActionEvent e) {
+		        try {
+		            // Validação da idade
+		            int idade = Integer.parseInt(idadeField.getText().trim());
+		            if (idade <= 0) {
+		                throw new NumberFormatException("Idade deve ser maior que 0");
+		            }
 
-					// Validação simples
-					if (idade <= 0 || genero.equals("*Preenchimento Obrigatório*")
-							|| faixaSalarial.equals("*Preenchimento Obrigatório*")
-							|| profissao.equals("*Preenchimento Obrigatório*")) {
-						JOptionPane.showMessageDialog(OficialCadastroCotacaoView.this,
-								"Todos os campos devem ser preenchidos!");
-						return;
-					}
+		            String genero = (String) generoCombo.getSelectedItem();
+		            String faixaSalarial = (String) rendaCombo.getSelectedItem();
+		            String profissao = (String) profissaoCombo.getSelectedItem();
 
-					// Chamada ao serviço de cálculo
-					CotacaoService cotacaoService = new CotacaoService();
-					String tipoSeguro = cotacaoService.definirTipoSeguro(genero, idade, profissao, faixaSalarial);
-					double valorFinal = cotacaoService.calcularValorFinal(genero, idade, profissao, faixaSalarial);
-					String capitaisSegurados = cotacaoService.obterCapitaisSegurados(tipoSeguro);
+		            if (genero.equals("*Preenchimento Obrigatório*") || faixaSalarial.equals("*Preenchimento Obrigatório*")
+		                || profissao.equals("*Preenchimento Obrigatório*")) {
+		                JOptionPane.showMessageDialog(OficialCadastroCotacaoView.this, "Todos os campos devem ser preenchidos!");
+		                return;
+		            }
 
-					// Abre a página CotacaoView com os dados calculados
-					OficialCotacaoView cotacaoView = new OficialCotacaoView(tipoSeguro, valorFinal, capitaisSegurados);
-					cotacaoView.setVisible(true);
-					setVisible(false);
+		            // Definir tipo de seguro e calcular valores
+		            CotacaoService cotacaoService = new CotacaoService();
+		            String tipoSeguro = cotacaoService.definirTipoSeguro(genero, idade, profissao, faixaSalarial);
+		            double valorFinal = cotacaoService.calcularValorFinal(genero, idade, profissao, faixaSalarial);
+		            String capitaisSegurados = cotacaoService.obterCapitaisSegurados(tipoSeguro);
 
-				} catch (Exception ex) {
-					JOptionPane.showMessageDialog(OficialCadastroCotacaoView.this,
-							"Erro ao processar a cotação: " + ex.getMessage());
-				}
-			}
+		            // Buscar id_seguro no banco com base no tipo de seguro
+		            int idSeguro = cotacaoService.buscarIdSeguro(tipoSeguro);
+		            if (idSeguro == 0) {
+		                throw new Exception("Tipo de seguro não encontrado no banco de dados.");
+		            }
+
+		            // Aqui o método getEmail() deve ser implementado na classe Segurado, caso contrário
+		            SeguradoDAO seguradoDAO = new SeguradoDAO();
+		            int idSegurado = seguradoDAO.getIdSeguradoLogado(segurado.getEmail());
+
+		            Cotacao cotacao = new Cotacao();
+		            cotacao.setSegurado(new Segurado(idSegurado)); // Define o ID do segurado
+		            cotacao.setSeguro(new Seguro(idSeguro)); // Define o ID do seguro
+		            cotacao.setValorFinal(valorFinal);
+
+		            CotacaoDAO cotacaoDAO = new CotacaoDAO();
+		            cotacaoDAO.saveCotacao(cotacao);
+
+		            JOptionPane.showMessageDialog(OficialCadastroCotacaoView.this, "Cotação salva com sucesso!");
+
+		            OficialCotacaoView cotacaoView = new OficialCotacaoView(tipoSeguro, valorFinal, capitaisSegurados);
+		            cotacaoView.setVisible(true);
+		            setVisible(false);
+
+		        } catch (NumberFormatException ex) {
+		            JOptionPane.showMessageDialog(OficialCadastroCotacaoView.this, "Erro na idade: " + ex.getMessage());
+		        } catch (Exception ex) {
+		            JOptionPane.showMessageDialog(OficialCadastroCotacaoView.this, "Erro ao processar a cotação: " + ex.getMessage());
+		        }
+		    }
 		});
+
+
 
 		setVisible(true);
 	}

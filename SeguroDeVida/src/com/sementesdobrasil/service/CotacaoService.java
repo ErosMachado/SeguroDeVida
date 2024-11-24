@@ -1,11 +1,11 @@
 package com.sementesdobrasil.service;
 
+import java.sql.SQLException;
+
+import com.sementesdobrasil.dao.CotacaoDAO;
 import com.sementesdobrasil.model.Cotacao;
 import com.sementesdobrasil.model.Segurado;
 import com.sementesdobrasil.model.Seguro;
-
-import java.sql.SQLException;
-import com.sementesdobrasil.dao.CotacaoDAO;
 
 public class CotacaoService {
 	private CotacaoDAO cotacaoDAO;
@@ -112,6 +112,12 @@ public class CotacaoService {
 
 		return valorBase * multiplicadorGenero * multiplicadorIdade * multiplicadorProfissao * multiplicadorSalario;
 	}
+	
+	public int buscarIdSeguro(String tipoSeguro) throws SQLException {
+	    return cotacaoDAO.getIdSeguroPorTipo(tipoSeguro);
+	}
+
+
 
 	public String obterCapitaisSegurados(String tipoSeguro) {
 		switch (tipoSeguro) {

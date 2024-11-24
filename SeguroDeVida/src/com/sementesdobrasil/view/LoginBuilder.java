@@ -23,6 +23,7 @@ import com.sementesdobrasil.controller.CadastroSeguradoController;
 import com.sementesdobrasil.dao.SeguradoDAO;
 import com.sementesdobrasil.model.Segurado;
 import com.sementesdobrasil.service.SeguradoService;
+import com.sementesdobrasil.util.SessaoUsuario;
 
 
 public class LoginBuilder {
@@ -128,6 +129,7 @@ public class LoginBuilder {
 
                 if (segurado != null) {
                     JOptionPane.showMessageDialog(frame, "Login realizado com sucesso!");
+                    SessaoUsuario.setUsuarioLogado(segurado);
                     PaginaUsuarioView perfil = new PaginaUsuarioView(segurado);  // Passando o objeto segurado
                     perfil.setVisible(true);
                     frame.dispose();  // Fecha a tela de login

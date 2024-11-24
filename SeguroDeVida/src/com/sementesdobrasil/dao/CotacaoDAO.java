@@ -1,8 +1,12 @@
 package com.sementesdobrasil.dao;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import com.sementesdobrasil.model.Cotacao;
 import com.sementesdobrasil.util.DatabaseConnection;
-import java.sql.*;
 
 public class CotacaoDAO {
 	private DatabaseConnection conexao;
@@ -25,6 +29,8 @@ public class CotacaoDAO {
 	            throw new SQLException("Segurado não encontrado.");
 	        }
 	    }
+	    
+	    
 
 	    // Verificar se o Seguro existe
 	    String sqlSeguro = "SELECT COUNT(*) FROM T_SEGURO WHERE ID_SEGURO = ?";
@@ -49,7 +55,7 @@ public class CotacaoDAO {
 	    }
 
 	    // Inserir cotação, considerando que se não houver corretor, ID_CORRETOR é NULL
-	    String sqlCotacao = "INSERT INTO T_COTACAO (ID_SEGURADO, ID_SEGURO, ID_CORRETOR, VALOR_FINAL, DATA_COTACAO) VALUES (?, ?, ?, ?, CURRENT_TIMESTAMP)";
+	    String sqlCotacao = "INSERT INTO T_COTACAO (ID_SEGURADO, ID_SEGURO, ID_CORRETOR, VALOR_FINAL) VALUES (?, ?, ?, ?)";
 	    try (PreparedStatement stmtCotacao = connection.prepareStatement(sqlCotacao)) {
 	        stmtCotacao.setInt(1, cotacao.getSegurado().getId());
 	        stmtCotacao.setInt(2, cotacao.getSeguro().getId());
@@ -65,6 +71,33 @@ public class CotacaoDAO {
 	        stmtCotacao.executeUpdate();
 	    }
 	}
+	public int getIdSeguroPorTipo(String tipoSeguro) throws SQLException {
+	    String sql = "SELECT ID_SEGURO FROM T_SEGURO WHERE tipo = ?";
+	    try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+	        stmt.setString(1, tipoSeguro);
+	        try (ResultSet rs = stmt.executeQuery()) {
+	            if (rs.next()) {
+	                return rs.getInt("ID_SEGURO");  
+	            } else {
+	                throw new SQLException("Tipo de seguro não encontrado: " + tipoSeguro);
+	            }
+	        }
+	    }
+	}
+
+
+	
+	/*private Seguro mapResultSetToSeguro(ResultSet rs) throws SQLException {
+	    return new Seguro(
+	        rs.getInt("id"),
+	        rs.getString("profissao"),
+	        rs.getDouble("salario"),
+	        rs.getString("condicaoSaude"),
+	        rs.getDouble("valorFinal") // ou outros atributos que o Seguro tiver
+	    );
+	}
+*/
+
 	
 	public Connection getConnection() {
 		return connection;
