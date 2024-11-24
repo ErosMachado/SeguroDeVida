@@ -1,7 +1,6 @@
 package com.sementesdobrasil.view;
 
 import javax.swing.*;
-import javax.swing.JPanel;
 
 import java.awt.*;
 
@@ -57,10 +56,14 @@ public class CotacaoView extends JFrame {
 		contentPane.add(contratarButton);
 
 		contratarButton.addActionListener(e -> {
-			JOptionPane.showMessageDialog(this, "Seguro contratado com sucesso! Você será direcionado ao perfil.");
+			int resposta = JOptionPane.showConfirmDialog(CotacaoView.this, "Deseja realizar o seu cadastro?",
+					"Não", JOptionPane.YES_NO_OPTION);
+			if (resposta == JOptionPane.YES_OPTION) {
+			
 			LoginBuilder loginBuilder = new LoginBuilder(); // Página de login
 			loginBuilder.getFrame().setVisible(true);
 			setVisible(false);
+			}
 		});
 	}
 }
