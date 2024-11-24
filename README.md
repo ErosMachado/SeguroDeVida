@@ -2,11 +2,25 @@
 
 Bem-vindo ao repositório do **Seguro de Vida**! 🚀 Este projeto é uma aplicação para gerenciar cotações de seguros com diversas funcionalidades.
 
+## Colaboradores do Projeto
+
+![Integrantes/Colaboradores](img/integrantes.png)
+
+
 ## 🖥️ Tela Inicial da Aplicação
 
 Aqui está uma prévia da interface principal:
 
-![Tela Inicial](images/tela_inicial.png)
+![Tela Inicial](img/telaInicial.jpeg)
+
+
+![Tela Principal](img/telaPrincipal.jpeg)
+
+
+## Arquitetura MVC
+
+![MVC](img/arquitetura.jpeg)
+
 
 ## 📖 Funcionalidades
 
@@ -24,7 +38,13 @@ Aqui está uma prévia da interface principal:
 
 Abaixo, um exemplo de como a documentação do projeto foi estruturada:
 
-![Fluxograma do Sistema](images/fluxograma.png)
+![Fluxograma do Sistema](img/fluxograma.png)
+
+
+## Modelagem do BancoDados
+
+![MER do BB](img/ModelagemBanco.jpeg)
+
 
 ## 📦 Como Instalar e Executar
 
