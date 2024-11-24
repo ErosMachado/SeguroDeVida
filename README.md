@@ -19,7 +19,7 @@ Aqui está uma prévia da interface principal:
 
 ## Arquitetura MVC
 
-![MVC](img/arquitetura.jpeg)
+![MVC](img/arquitetura.png)
 
 
 ## 📖 Funcionalidades
