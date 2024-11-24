@@ -1,13 +1,14 @@
 package com.sementesdobrasil.main;
-import com.sementesdobrasil.view.TelaPrincipal;
 import javax.swing.SwingUtilities;
+
+import com.sementesdobrasil.view.TelaInicialView;
 
 public class Application {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                TelaPrincipal main = new TelaPrincipal();
+            	TelaInicialView main = new TelaInicialView();
                 main.setVisible(true);
             }
         });

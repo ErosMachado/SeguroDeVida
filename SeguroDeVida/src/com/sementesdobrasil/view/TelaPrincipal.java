@@ -1,9 +1,7 @@
-
 package com.sementesdobrasil.view;
 
 import javax.swing.*;
 import javax.swing.border.Border;
-
 import java.awt.*;
 import java.awt.event.*;
 
@@ -16,24 +14,29 @@ public class TelaPrincipal extends JFrame {
 		setSize(600, 400);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		getContentPane().setBackground(new Color(245, 245, 245));
+		getContentPane().setBackground(new Color(255, 255, 255)); // Fundo branco
 		getContentPane().setLayout(null);
-
+		
 		JLabel labelTitulo = new JLabel("Bem-vindo ao Sistema de Seguro de Vida");
 		labelTitulo.setBounds(94, 45, 430, 30);
 		labelTitulo.setFont(new Font("Arial", Font.BOLD, 20));
-		labelTitulo.setForeground(new Color(50, 50, 50));
+		labelTitulo.setForeground(new Color(2, 109, 115)); // Texto escuro
 		getContentPane().add(labelTitulo);
 
 		// Criar botões arredondados
-		JButton btnLogin = criarBotaoArredondado("Login", 200, 120, new Color(0, 123, 255));
-		JButton btnCadastro = criarBotaoArredondado("Cadastro", 200, 180, new Color(40, 167, 69));
-		JButton btnSimulacao = criarBotaoArredondado("Simular Cotação", 200, 240, new Color(255, 193, 7));
+		JButton btnLogin = criarBotaoArredondado("Login", 200, 120, new Color(0, 183, 183)); // Azul
+		JButton btnCadastro = criarBotaoArredondado("Cadastro", 200, 180, new Color(0, 183, 183)); // Verde
+		JButton btnSimulacao = criarBotaoArredondado("Simular Cotação", 200, 240, new Color(0, 183, 183)); // Amarelo
 
 		// Adicionar os botões à tela
 		getContentPane().add(btnLogin);
 		getContentPane().add(btnCadastro);
 		getContentPane().add(btnSimulacao);
+		
+		JLabel lblLogoDevMarine = new JLabel("");
+		lblLogoDevMarine.setIcon(new ImageIcon("C:\\Users\\Cristine\\Desktop\\dev_cristine_novo\\Git\\SeguroDeVida\\SeguroDeVida\\src\\Imagens\\LogoDevMarine.png"));
+		lblLogoDevMarine.setBounds(39, 0, 586, 479);
+		getContentPane().add(lblLogoDevMarine);
 
 		btnLogin.addActionListener(new ActionListener() {
 			@Override
@@ -43,7 +46,6 @@ public class TelaPrincipal extends JFrame {
 				setVisible(false);
 			}
 		});
-		getContentPane().add(btnLogin);
 
 		btnCadastro.addActionListener(new ActionListener() {
 			@Override
@@ -53,7 +55,6 @@ public class TelaPrincipal extends JFrame {
 				setVisible(false);
 			}
 		});
-		getContentPane().add(btnCadastro);
 
 		btnSimulacao.addActionListener(new ActionListener() {
 			@Override
@@ -63,7 +64,6 @@ public class TelaPrincipal extends JFrame {
 				setVisible(false);
 			}
 		});
-		getContentPane().add(btnSimulacao);
 
 		// Exibir a tela
 		setVisible(true);
@@ -71,9 +71,6 @@ public class TelaPrincipal extends JFrame {
 
 	private JButton criarBotaoArredondado(String texto, int x, int y, Color corFundo) {
 		JButton botao = new JButton(texto) {
-			/// /**
-
-			//
 			private static final long serialVersionUID = 1L;
 
 			@Override
@@ -95,7 +92,7 @@ public class TelaPrincipal extends JFrame {
 
 		botao.setBounds(x, y, 200, 40);
 		botao.setFont(new Font("Arial", Font.PLAIN, 16));
-		botao.setForeground(Color.WHITE);
+		botao.setForeground(Color.WHITE); // Texto branco
 		botao.setFocusPainted(false);
 		botao.setContentAreaFilled(false);
 		botao.setOpaque(false);
