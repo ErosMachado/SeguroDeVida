@@ -19,8 +19,10 @@ public class CadastroDependenteView extends JFrame {
 	private JComboBox<String> estadoCivilBox;
 	private JCheckBox dependenciaFinanceiraCheckBox;
 	private JTextArea observacoesArea;
+	private final JLabel label_1 = new JLabel("");
 
 	public CadastroDependenteView() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Cristine\\Desktop\\Dev_Cris\\Git\\SeguroDeVida\\SeguroDeVida\\src\\Imagens\\LogoDevMarine.jpeg"));
 		setTitle("Cadastro de Dependente");
 		setSize(750, 700);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -103,6 +105,9 @@ public class CadastroDependenteView extends JFrame {
 		btnInvisivel.setBackground(new Color(255, 255, 255));
 		btnInvisivel.setBounds(213, 22, 9, 10);
 		buttonPanel.add(btnInvisivel);
+		label_1.setIcon(new ImageIcon("C:\\Users\\Cristine\\Desktop\\Dev_Cris\\Git\\SeguroDeVida\\SeguroDeVida\\src\\Imagens\\LogoDevMarine.jpeg"));
+		label_1.setBounds(111, 0, 736, 661);
+		getContentPane().add(label_1);
 	}
 
 	private void addLabelAndField(String label, int x, int y, JTextField field) {

@@ -1,125 +1,156 @@
 package com.sementesdobrasil.view;
 
-import java.awt.BorderLayout;
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.*;
+import java.awt.event.*;
 import java.sql.SQLException;
-
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-
+import javax.swing.*;
+import javax.swing.border.Border;
 import com.sementesdobrasil.dao.SeguradoDAO;
 import com.sementesdobrasil.model.Segurado;
 import com.sementesdobrasil.util.GerenciadorDeJanelas;
 
 public class PaginaUsuarioView extends JFrame {
-	private static final long serialVersionUID = 1L;
-	private Segurado segurado; // Objeto segurado associado a esta janela
+    private static final long serialVersionUID = 1L;
+    public PaginaUsuarioView(Segurado segurado) {
+        setTitle("Página do Usuário");
+        setSize(600, 400);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new BorderLayout());
+        getContentPane().setBackground(new Color(255, 255, 255)); // Fundo branco
 
-	public PaginaUsuarioView(Segurado segurado) {
-		this.segurado = segurado; // Armazenar o segurado recebido
-		setTitle("Página do Usuário");
-		setSize(523, 409);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		getContentPane().setLayout(new BorderLayout());
+        // Título
+        JLabel tituloLabel = new JLabel("Bem-vindo(a) à sua página");
+        tituloLabel.setFont(new Font("Arial", Font.BOLD, 20));
+        tituloLabel.setForeground(new Color(2, 109, 115)); // Verde esmeralda
+        tituloLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        tituloLabel.setBorder(BorderFactory.createEmptyBorder(20, 0, 20, 0));
+        getContentPane().add(tituloLabel, BorderLayout.NORTH);
 
-		// Painel para informações pessoais
-		JPanel infoPanel = new JPanel();
-		infoPanel.setLayout(new GridLayout(7, 1, 10, 10)); // 7 linhas para exibir todas as informações
-		infoPanel.setBorder(BorderFactory.createTitledBorder("Informações Pessoais"));
+        // Painel para informações pessoais
+        JPanel infoPanel = new JPanel();
+        infoPanel.setLayout(new GridLayout(7, 1, 10, 10));
+        infoPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(new Color(2, 109, 115)), 
+                "Informações Pessoais", 
+                0, 0, new Font("Arial", Font.BOLD, 14), new Color(2, 109, 115)));
+        infoPanel.setBackground(new Color(245, 245, 245)); // Fundo cinza claro
 
-		infoPanel.add(new JLabel("Nome: " + segurado.getNome()));
-		infoPanel.add(new JLabel("Idade: " + segurado.getIdade()));
-		infoPanel.add(new JLabel("Gênero: " + segurado.getGenero()));
-		infoPanel.add(new JLabel("E-mail: " + segurado.getEmail()));
-		infoPanel.add(new JLabel("Telefone: " + segurado.getTelefone()));
-		infoPanel.add(new JLabel("CPF: " + segurado.getCpf()));
-		infoPanel.add(new JLabel("CEP: " + segurado.getCep()));
+        infoPanel.add(criarInfoLabel("Nome: " + segurado.getNome()));
+        infoPanel.add(criarInfoLabel("Idade: " + segurado.getIdade()));
+        infoPanel.add(criarInfoLabel("Gênero: " + segurado.getGenero()));
+        infoPanel.add(criarInfoLabel("E-mail: " + segurado.getEmail()));
+        infoPanel.add(criarInfoLabel("Telefone: " + segurado.getTelefone()));
+        infoPanel.add(criarInfoLabel("CPF: " + segurado.getCpf()));
+        infoPanel.add(criarInfoLabel("CEP: " + segurado.getCep()));
 
-		// Painel para botões de ações
-		JPanel buttonPanel = new JPanel();
-		buttonPanel.setLayout(new GridLayout(1, 3, 10, 10));
+        // Painel para botões
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new GridLayout(1, 3, 20, 0));
+        buttonPanel.setBackground(new Color(255, 255, 255)); // Fundo branco
+        buttonPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
-		JButton realizarSeguroButton = new JButton("Voltar ao início");
-		JButton SeguroButton = new JButton("Contratar Seguro");
-		JButton adicionarDependenteButton = new JButton("Adicionar Dependentes");
+        JButton realizarSeguroButton = criarBotaoArredondado("Voltar ao início", new Color(0, 183, 183));
+        JButton SeguroButton = criarBotaoArredondado("Contratar Seguro", new Color(0, 183, 183));
+        JButton adicionarDependenteButton = criarBotaoArredondado("Adicionar Dependentes", new Color(0, 183, 183));
 
-		// Adicionando os botões ao painel
-		buttonPanel.add(realizarSeguroButton);
-		buttonPanel.add(SeguroButton);
-		buttonPanel.add(adicionarDependenteButton);
+        buttonPanel.add(realizarSeguroButton);
+        buttonPanel.add(SeguroButton);
+        buttonPanel.add(adicionarDependenteButton);
 
-		// Adicionando painéis à tela principal
-		getContentPane().add(infoPanel, BorderLayout.CENTER);
-		getContentPane().add(buttonPanel, BorderLayout.SOUTH);
+        getContentPane().add(infoPanel, BorderLayout.CENTER);
+        getContentPane().add(buttonPanel, BorderLayout.SOUTH);
 
-		// Ações dos botões
-		realizarSeguroButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				int resposta = JOptionPane.showConfirmDialog(PaginaUsuarioView.this,
-						"Tem certeza que deseja voltar ao início?", "Voltar ao Início", JOptionPane.YES_NO_OPTION);
-				if (resposta == JOptionPane.YES_OPTION) {
-					GerenciadorDeJanelas.trocarJanela(new TelaPrincipal());
-				}
-			}
-		});
+        // Ações dos botões
+        realizarSeguroButton.addActionListener(e -> {
+            int resposta = JOptionPane.showConfirmDialog(PaginaUsuarioView.this,
+                    "Tem certeza que deseja voltar ao início?", "Voltar ao Início", JOptionPane.YES_NO_OPTION);
+            if (resposta == JOptionPane.YES_OPTION) {
+                GerenciadorDeJanelas.trocarJanela(new TelaPrincipal());
+            }
+        });
 
-		SeguroButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(PaginaUsuarioView.this, "Abrindo tela para realizar seguro.");
-				OficialCadastroCotacaoView cadastroCotacao = new OficialCadastroCotacaoView(segurado); // Passando o
-				cadastroCotacao.setVisible(true);
-				setVisible(false); // Ocultando a tela atual
-			}
-		});
+        SeguroButton.addActionListener(e -> {
+            JOptionPane.showMessageDialog(PaginaUsuarioView.this, "Abrindo tela para realizar seguro.");
+            OficialCadastroCotacaoView cadastroCotacao = new OficialCadastroCotacaoView(segurado);
+            cadastroCotacao.setVisible(true);
+            setVisible(false);
+        });
 
-		adicionarDependenteButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(PaginaUsuarioView.this, "Abrindo tela para adicionar dependentes.");
-				CadastroDependenteView dependente = new CadastroDependenteView(); // Passando o
-				dependente.setVisible(true);
-				setVisible(false); // Ocultando a tela atual
-			}
-		});
-	}
+        adicionarDependenteButton.addActionListener(e -> {
+            JOptionPane.showMessageDialog(PaginaUsuarioView.this, "Abrindo tela para adicionar dependentes.");
+            CadastroDependenteView dependente = new CadastroDependenteView();
+            dependente.setVisible(true);
+            setVisible(false);
+        });
+    }
 
-	public PaginaUsuarioView() {
-		// TODO Auto-generated constructor stub
-	}
+    private JLabel criarInfoLabel(String texto) {
+        JLabel label = new JLabel(texto);
+        label.setFont(new Font("Arial", Font.PLAIN, 14));
+        label.setForeground(new Color(50, 50, 50)); // Cinza escuro
+        return label;
+    }
 
-	public Segurado getSegurado() {
-		return segurado;
-	}
+    private JButton criarBotaoArredondado(String texto, Color corFundo) {
+        JButton botao = new JButton(texto) {
+            private static final long serialVersionUID = 1L;
 
-	public void setSegurado(Segurado segurado) {
-		this.segurado = segurado;
-	}
+            @Override
+            protected void paintComponent(Graphics g) {
+                Graphics2D g2d = (Graphics2D) g;
+                g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-	public static void main(String[] args) {
-		String email = "joao@email.com";
-		String senha = "Senha123";
+                // Configurar cor de fundo e borda arredondada
+                g2d.setColor(corFundo);
+                g2d.fillRoundRect(0, 0, getWidth(), getHeight(), 30, 30);
+                super.paintComponent(g);
+            }
 
-		SeguradoDAO seguradoDAO = new SeguradoDAO();
-		Segurado segurado = null;
+            @Override
+            public void setBorder(Border border) {
+                // Evita que o botão adicione bordas extras
+            }
+        };
 
-		try {
-			segurado = seguradoDAO.getSeguradoByEmailSenha(email, senha);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+        botao.setFont(new Font("Arial", Font.PLAIN, 14));
+        botao.setForeground(Color.WHITE); // Texto branco
+        botao.setFocusPainted(false);
+        botao.setContentAreaFilled(false);
+        botao.setOpaque(false);
+        botao.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
-		if (segurado != null) {
-			GerenciadorDeJanelas.trocarJanela(new PaginaUsuarioView(segurado));
-		} else {
-			JOptionPane.showMessageDialog(null, "Credenciais inválidas.");
-		}
-	}
+        // Adicionando animações ao botão
+        botao.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                botao.setFont(new Font("Arial", Font.BOLD, 16)); // Fonte maior
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                botao.setFont(new Font("Arial", Font.PLAIN, 14)); // Fonte padrão
+            }
+        });
+
+        return botao;
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> {
+            try {
+                // Criando um objeto segurado fictício para demonstração
+                SeguradoDAO seguradoDAO = new SeguradoDAO();
+                Segurado segurado = seguradoDAO.getSeguradoByEmailSenha("joao@email.com", "Senha123");
+
+                if (segurado != null) {
+                    new PaginaUsuarioView(segurado).setVisible(true);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Usuário não encontrado.");
+                }
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, "Erro ao buscar usuário: " + e.getMessage());
+            }
+        });
+    }
+
 }

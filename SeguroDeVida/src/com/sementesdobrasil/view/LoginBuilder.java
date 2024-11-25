@@ -24,6 +24,7 @@ import com.sementesdobrasil.dao.SeguradoDAO;
 import com.sementesdobrasil.model.Segurado;
 import com.sementesdobrasil.service.SeguradoService;
 import com.sementesdobrasil.util.SessaoUsuario;
+import java.awt.Toolkit;
 
 
 public class LoginBuilder {
@@ -53,6 +54,7 @@ public class LoginBuilder {
 
     private void initialize() {
         frame = new JFrame();
+        frame.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Cristine\\Desktop\\Dev_Cris\\Git\\SeguroDeVida\\SeguroDeVida\\src\\Imagens\\LogoDevMarine.jpeg"));
         frame.setBounds(100, 100, 600, 400);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().setLayout(null);
@@ -103,10 +105,10 @@ public class LoginBuilder {
         frame.getContentPane().add(passwordField);
 
         // Botões arredondados
-        JButton loginButton = criarBotaoComHover("Entrar", new Color(0, 123, 255), Color.WHITE);
+        JButton loginButton = criarBotaoComHover("Entrar", new Color(0, 183, 183), Color.WHITE);
         loginButton.setBounds(110, 270, 180, 40);
 
-        JButton registerButton = criarBotaoComHover("Criar Cadastro", new Color(40, 167, 69), Color.WHITE);
+        JButton registerButton = criarBotaoComHover("Criar Cadastro", new Color(0, 183, 183), Color.WHITE);
         registerButton.setBounds(310, 270, 180, 40);
 
         // Adicionar ações aos botões

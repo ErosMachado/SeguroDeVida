@@ -38,7 +38,7 @@ public class CadastroCotacaoView extends JFrame {
 	}
 
 	public CadastroCotacaoView() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Cristine\\Desktop\\dev_cristine_novo\\Git\\SeguroDeVida\\SeguroDeVida\\src\\Imagens\\LogoDevMarine.jpeg"));
+		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Cristine\\Desktop\\Dev_Cris\\Git\\SeguroDeVida\\SeguroDeVida\\src\\Imagens\\LogoDevMarine.jpeg"));
 		// Configuração da janela principal
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, 800, 700); // Aumentado para dar mais espaço ao novo campo
