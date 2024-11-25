@@ -88,16 +88,16 @@ public class CadastroSeguradoView extends JFrame {
 		btnEscondido.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				nomeField.setText("João da Silva");
-		        idadeField.setText("28");
+				nomeField.setText("Eduardo Santos");
+		        idadeField.setText("24");
 		        generoBox.setSelectedIndex(1);
-		        emailField.setText("joao@gmail.com");
-		        telefoneField.setText("(11) 98765-4321");
-		        cpfField.setText("123.456.488-10");
-		        cepField.setText("12345-678");
-		        senhaField.setText("Senha123");
-		        confirmarSenhaField.setText("Senha123");
-		        estadoCivilBox.setSelectedIndex(2);
+		        emailField.setText("edu@gmail.com");
+		        telefoneField.setText("(12) 78115-1321");
+		        cpfField.setText("123.111.488-10");
+		        cepField.setText("12005-678");
+		        senhaField.setText("123");
+		        confirmarSenhaField.setText("123");
+		        estadoCivilBox.setSelectedIndex(1);
 		        
 			}
 		});

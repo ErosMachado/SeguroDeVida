@@ -1,13 +1,17 @@
 package com.sementesdobrasil.view;
 
 import javax.swing.*;
+
+
 import java.awt.*;
 
 public class PersonalizaCotacaoView extends JFrame {
 
     private static final long serialVersionUID = 1L;
+   
 
     public PersonalizaCotacaoView() {
+    	
         setTitle("Personalizar Coberturas");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 800, 600);
@@ -49,6 +53,8 @@ public class PersonalizaCotacaoView extends JFrame {
 
         aplicarButton.addActionListener(e -> {
             JOptionPane.showMessageDialog(this, "Coberturas atualizadas!");
+            LoginBuilder loginBuilder = new LoginBuilder(); // Página de login
+            loginBuilder.getFrame().setVisible(true);
             setVisible(false);
         });
     }

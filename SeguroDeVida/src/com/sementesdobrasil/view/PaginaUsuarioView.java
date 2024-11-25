@@ -91,6 +91,10 @@ public class PaginaUsuarioView extends JFrame {
 		});
 	}
 
+	public PaginaUsuarioView() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public Segurado getSegurado() {
 		return segurado;
 	}

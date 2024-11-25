@@ -1,4 +1,4 @@
-package com.sementesdobrasil.view;//teste
+package com.sementesdobrasil.view;// duplo teste
 
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -19,6 +19,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import com.sementesdobrasil.service.CotacaoService;
+import java.awt.Toolkit;
 
 public class CadastroCotacaoView extends JFrame {
 
@@ -37,6 +38,7 @@ public class CadastroCotacaoView extends JFrame {
 	}
 
 	public CadastroCotacaoView() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Cristine\\Desktop\\dev_cristine_novo\\Git\\SeguroDeVida\\SeguroDeVida\\src\\Imagens\\LogoDevMarine.jpeg"));
 		// Configuração da janela principal
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, 800, 700); // Aumentado para dar mais espaço ao novo campo
@@ -51,9 +53,9 @@ public class CadastroCotacaoView extends JFrame {
 		// Cabeçalho
 		JLabel titulo = new JLabel("Simulação de Cotação de Seguro de Vida");
 		titulo.setFont(new Font("Roboto", Font.BOLD, 28)); // Título maior
-		titulo.setBounds(200, 20, 400, 40);
+		titulo.setBounds(98, 10, 590, 40);
 		titulo.setHorizontalAlignment(SwingConstants.CENTER);
-		titulo.setForeground(new Color(34, 85, 34)); // Verde escuro
+		titulo.setForeground(new Color(41, 82, 82)); // Verde escuro
 		contentPane.add(titulo);
 
 		// Painel de Cadastro
@@ -62,12 +64,12 @@ public class CadastroCotacaoView extends JFrame {
 		cadastroPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(new Color(34, 85, 34)),
 				"Dados do Cliente"));
 		cadastroPanel.setLayout(null);
-		cadastroPanel.setBackground(new Color(245, 255, 245)); // Fundo branco-esverdeado
+		cadastroPanel.setBackground(new Color(217, 236, 236)); // Fundo branco-esverdeado
 		contentPane.add(cadastroPanel);
 
 		JLabel nomeLabel = new JLabel("Nome:");
-		nomeLabel.setFont(new Font("Roboto", Font.PLAIN, 16));
-		nomeLabel.setBounds(50, 30, 100, 20);
+		nomeLabel.setFont(new Font("Dialog", Font.BOLD, 18));
+		nomeLabel.setBounds(10, 30, 100, 20);
 		cadastroPanel.add(nomeLabel);
 
 		JTextField nomeField = new JTextField();
@@ -76,8 +78,8 @@ public class CadastroCotacaoView extends JFrame {
 		cadastroPanel.add(nomeField);
 
 		JLabel idadeLabel = new JLabel("Idade:");
-		idadeLabel.setFont(new Font("Roboto", Font.PLAIN, 16));
-		idadeLabel.setBounds(50, 80, 100, 20);
+		idadeLabel.setFont(new Font("Dialog", Font.BOLD, 18));
+		idadeLabel.setBounds(10, 80, 100, 20);
 		cadastroPanel.add(idadeLabel);
 
 		JTextField idadeField = new JTextField();
@@ -86,19 +88,19 @@ public class CadastroCotacaoView extends JFrame {
 		cadastroPanel.add(idadeField);
 
 		JLabel generoLabel = new JLabel("Gênero:");
-		generoLabel.setFont(new Font("Roboto", Font.PLAIN, 16));
-		generoLabel.setBounds(50, 130, 100, 20);
+		generoLabel.setFont(new Font("Dialog", Font.BOLD, 18));
+		generoLabel.setBounds(10, 130, 100, 20);
 		cadastroPanel.add(generoLabel);
 
-		String[] generos = { "*Preenchimento Obrigatório*", "Feminino", "Masculino", "Outro" };
+		String[] generos = { "Preenchimento Obrigatório", "Feminino", "Masculino", "Outro" };
 		JComboBox<String> generoCombo = new JComboBox<>(generos);
 		generoCombo.setFont(new Font("Roboto", Font.PLAIN, 14));
 		generoCombo.setBounds(150, 130, 265, 30);
 		cadastroPanel.add(generoCombo);
 
 		JLabel emailLabel = new JLabel("E-mail:");
-		emailLabel.setFont(new Font("Roboto", Font.PLAIN, 16));
-		emailLabel.setBounds(50, 180, 100, 20);
+		emailLabel.setFont(new Font("Dialog", Font.BOLD, 18));
+		emailLabel.setBounds(10, 180, 100, 20);
 		cadastroPanel.add(emailLabel);
 
 		JTextField emailField = new JTextField();
@@ -107,11 +109,11 @@ public class CadastroCotacaoView extends JFrame {
 		cadastroPanel.add(emailField);
 
 		JLabel rendaLabel = new JLabel("Faixa Salarial:");
-		rendaLabel.setFont(new Font("Roboto", Font.PLAIN, 16));
-		rendaLabel.setBounds(50, 230, 150, 20);
+		rendaLabel.setFont(new Font("Dialog", Font.BOLD, 18));
+		rendaLabel.setBounds(10, 230, 150, 20);
 		cadastroPanel.add(rendaLabel);
 
-		String[] faixasSalarial = { "*Preenchimento Obrigatório*", "1040 - 2050", "2051 - 3050", "3051 - 4050",
+		String[] faixasSalarial = { "Preenchimento Obrigatório", "1040 - 2050", "2051 - 3050", "3051 - 4050",
 				"4051 - 5050", "Acima de 5050" };
 		JComboBox<String> rendaCombo = new JComboBox<>(faixasSalarial);
 		rendaCombo.setFont(new Font("Roboto", Font.PLAIN, 14));
@@ -120,11 +122,11 @@ public class CadastroCotacaoView extends JFrame {
 
 		// Novo campo Profissão
 		JLabel profissaoLabel = new JLabel("Profissão:");
-		profissaoLabel.setFont(new Font("Roboto", Font.PLAIN, 16));
-		profissaoLabel.setBounds(50, 280, 100, 20);
+		profissaoLabel.setFont(new Font("Dialog", Font.BOLD, 18));
+		profissaoLabel.setBounds(10, 280, 100, 20);
 		cadastroPanel.add(profissaoLabel);
 
-		String[] profissoes = { "*Preenchimento Obrigatório*", "Não exerço nenhuma destas atividades profissionais",
+		String[] profissoes = { "Preenchimento Obrigatório", "Não exerço nenhuma destas atividades profissionais",
 				"APOSENTADO (POR IVALIDEZ OU DOENÇA)",
 				"CONSTRUÇÃO CIVIL E MINERAÇÃO - Supervisor ou coordenador extração mineral ou da construção civil",
 				"CONSTRUÇÃO CIVIL E MINERAÇÃO - Técnico em extração mineral ou geologia",
@@ -162,30 +164,30 @@ public class CadastroCotacaoView extends JFrame {
 		JPanel botoesPanel = new JPanel();
 		botoesPanel.setBounds(50, 470, 700, 50);
 		botoesPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
-		botoesPanel.setBackground(new Color(230, 250, 230));
+		botoesPanel.setBackground(new Color(217, 236, 236));
 		contentPane.add(botoesPanel);
 
 		JButton salvarButton = new JButton("Cotar");
 		salvarButton.setFont(new Font("Roboto", Font.BOLD, 16));
-		salvarButton.setBackground(new Color(50, 99, 99));
+		salvarButton.setBackground(new Color(0, 183, 183));
 		salvarButton.setForeground(Color.WHITE);
 		botoesPanel.add(salvarButton);
 
 		JButton LimparButton = new JButton("Limpar");
 		LimparButton.setForeground(Color.WHITE);
 		LimparButton.setFont(new Font("Dialog", Font.BOLD, 16));
-		LimparButton.setBackground(new Color(50, 99, 99));
+		LimparButton.setBackground(new Color(0, 183, 183));
 		botoesPanel.add(LimparButton);
 
 		JButton VoltarButton = new JButton("Voltar");
 		VoltarButton.setFont(new Font("Roboto", Font.BOLD, 16));
-		VoltarButton.setBackground(new Color(50, 99, 99));
+		VoltarButton.setBackground(new Color(0, 183, 183));
 		VoltarButton.setForeground(Color.WHITE);
 		botoesPanel.add(VoltarButton);
 
 		JLabel lblLogoTokio = new JLabel("");
-		lblLogoTokio.setIcon(new ImageIcon(CadastroCotacaoView.class.getResource("/Imagens/FundoTokio.png")));
-		lblLogoTokio.setBounds(145, 470, 500, 183);
+		lblLogoTokio.setIcon(new ImageIcon(CadastroCotacaoView.class.getResource("/Imagens/LogoDevMarine.jpeg")));
+		lblLogoTokio.setBounds(144, 436, 500, 183);
 		contentPane.add(lblLogoTokio);
 
 		VoltarButton.addActionListener(new ActionListener() {
@@ -227,9 +229,9 @@ public class CadastroCotacaoView extends JFrame {
 					String profissao = (String) profissaoCombo.getSelectedItem();
 
 					// Validação simples
-					if (nome.isEmpty() || idade <= 0 || genero.equals("*Preenchimento Obrigatório*")
-							|| faixaSalarial.equals("*Preenchimento Obrigatório*")
-							|| profissao.equals("*Preenchimento Obrigatório*")) {
+					if (nome.isEmpty() || idade <= 0 || genero.equals("Preenchimento Obrigatório")
+							|| faixaSalarial.equals("Preenchimento Obrigatório")
+							|| profissao.equals("Preenchimento Obrigatório")) {
 						JOptionPane.showMessageDialog(CadastroCotacaoView.this,
 								"Todos os campos devem ser preenchidos!");
 						return;

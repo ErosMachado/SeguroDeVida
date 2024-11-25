@@ -80,7 +80,11 @@ public class OficialCotacaoView extends JFrame {
         });
     }
 
-    // Método para criar botões estilizados
+    public OficialCotacaoView() {
+		// TODO Auto-generated constructor stub
+	}
+
+	// Método para criar botões estilizados
     private JButton criarBotaoEstilizado(String texto) {
         JButton botao = new JButton(texto);
         botao.setFont(new Font("Roboto", Font.BOLD, 16));
