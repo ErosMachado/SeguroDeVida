@@ -84,7 +84,7 @@ public class PaginaUsuarioView extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				JOptionPane.showMessageDialog(PaginaUsuarioView.this, "Abrindo tela para adicionar dependentes.");
-				DependenteView dependente = new DependenteView(); // Passando o
+				CadastroDependenteView dependente = new CadastroDependenteView(); // Passando o
 				dependente.setVisible(true);
 				setVisible(false); // Ocultando a tela atual
 			}

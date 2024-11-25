@@ -98,6 +98,7 @@ public class CadastroSeguradoView extends JFrame {
 		        senhaField.setText("Senha123");
 		        confirmarSenhaField.setText("Senha123");
 		        estadoCivilBox.setSelectedIndex(2);
+		        
 			}
 		});
 		btnEscondido.setBounds(168, 38, 12, 17);
